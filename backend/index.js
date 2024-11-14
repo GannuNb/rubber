@@ -134,7 +134,7 @@ app.use('/api', mailRoutes);
 app.use('/api', uploadscrapRoute);
 app.use('/api', createUserRoute);
 app.get('/', (req, res) => {
-    res.send('Hello Worldd!');
+    res.send('Hello World!');
 });
 
 app.listen(port, () => {
