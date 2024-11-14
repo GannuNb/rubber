@@ -14,7 +14,7 @@ const User = require('./models/User');
 
 // Middleware
 app.use(cors({
-    origin: 'https://lavarubberllc.com/',
+    origin: 'https://lavarubberllc.com',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
