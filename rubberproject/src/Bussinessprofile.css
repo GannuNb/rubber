@@ -1,0 +1,68 @@
+
+.setterbus {
+    margin-left: 16%;
+    margin-top: 10%;
+}
+.form-gradient {
+   
+        background: linear-gradient(to right, #e0f7fa, #80deea, #26c6da);
+  
+      
+  }
+  
+
+
+h2.text-center {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+
+@media (max-width: 991px) {
+    .setterus {
+        margin-left: 5%;
+        margin-top: 12%;
+    }
+
+    h2.text-center {
+        font-size: 1.8rem; 
+        margin-bottom: 15px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .setterbus {
+        margin-left: 2%;
+        margin-top: 35%;
+    }
+
+    h2.text-center {
+        font-size: 1.5rem; 
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+   
+    form {
+        padding: 0 10px; 
+    }
+    
+   
+    .card {
+        margin-bottom: 30px;
+    }
+
+    
+    .card-img-top {
+        max-height: 60px;
+        width: 30%;
+    }
+}
+
+@media (min-width:600px) and (max-width: 1100px) {
+    .setterbus {
+        margin-left: 0%;
+        margin-top: 12%;
+    }
+}

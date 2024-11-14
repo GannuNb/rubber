@@ -1,0 +1,503 @@
+    <div className="container marketing">
+      {/* Three columns of text below the carousel */}
+      <div className="row">
+        <div className="col-lg-4">
+          <img
+            className="rounded-circle"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+            alt="Generic placeholder"
+            width="140"
+            height="140"
+          />
+          <h2>Heading</h2>
+          <p>
+            Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.
+          </p>
+          <p>
+            <a className="btn btn-secondary" href="#" role="button">View details »</a>
+          </p>
+        </div>
+        <div className="col-lg-4">
+          <img
+            className="rounded-circle"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+            alt="Generic placeholder"
+            width="140"
+            height="140"
+          />
+          <h2>Heading</h2>
+          <p>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.
+          </p>
+          <p>
+            <a className="btn btn-secondary" href="#" role="button">View details »</a>
+          </p>
+        </div>
+        <div className="col-lg-4">
+          <img
+            className="rounded-circle"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+            alt="Generic placeholder"
+            width="140"
+            height="140"
+          />
+          <h2>Heading</h2>
+          <p>
+            Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+          </p>
+          <p>
+            <a className="btn btn-secondary" href="#" role="button">View details »</a>
+          </p>
+        </div>
+      </div>
+
+      {/* START THE FEATURETTES */}
+      <hr className="featurette-divider" />
+
+      <div className="row featurette">
+        <div className="col-md-7">
+          <h2 className="featurette-heading">
+            First featurette heading. <span className="text-muted">It'll blow your mind.</span>
+          </h2>
+          <p className="lead">
+            Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+          </p>
+        </div>
+        <div className="col-md-5">
+          <img
+            className="featurette-image img-fluid mx-auto"
+            data-src="holder.js/500x500/auto"
+            alt="500x500"
+            style={{ width: '500px', height: '500px' }}
+            src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_192287e9385%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_192287e9385%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.13333129882812%22%20y%3D%22261.1%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+            data-holder-rendered="true"
+          />
+        </div>
+      </div>
+
+      <hr className="featurette-divider" />
+
+      <div className="row featurette">
+        <div className="col-md-7 order-md-2">
+          <h2 className="featurette-heading">
+            Oh yeah, it's that good. <span className="text-muted">See for yourself.</span>
+          </h2>
+          <p className="lead">
+            Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+          </p>
+        </div>
+        <div className="col-md-5 order-md-1">
+          <img
+            className="featurette-image img-fluid mx-auto"
+            data-src="holder.js/500x500/auto"
+            alt="500x500"
+            style={{ width: '500px', height: '500px' }}
+            src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_192287e9387%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_192287e9387%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.13333129882812%22%20y%3D%22261.1%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+            data-holder-rendered="true"
+          />
+        </div>
+      </div>
+
+      <hr className="featurette-divider" />
+
+      <div className="row featurette">
+        <div className="col-md-7">
+          <h2 className="featurette-heading">
+            And lastly, this one. <span className="text-muted">Checkmate.</span>
+          </h2>
+          <p className="lead">
+            Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+          </p>
+        </div>
+        <div className="col-md-5">
+          <img
+            className="featurette-image img-fluid mx-auto"
+            data-src="holder.js/500x500/auto"
+            alt="500x500"
+            style={{ width: '500px', height: '500px' }}
+            src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_192287e9389%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_192287e9389%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.13333129882812%22%20y%3D%22261.1%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+            data-holder-rendered="true"
+          />
+        </div>
+      </div>
+      <hr className="featurette-divider" />
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    [
+  {
+    "type": "Tyre scrap",
+    "name": "Multiple Baled Tyres PCR",
+    "available_quantity": 10000,
+    "price": 500
+  },
+  {
+    "type": "Tyre scrap",
+    "name": "Baled Tyres TBR",
+    "available_quantity": 8000,
+    "price": 700
+  },
+  {
+    "type": "Tyre scrap",
+    "name": "Three Piece PCR",
+    "available_quantity": 6000,
+    "price": 300
+  },
+  {
+    "type": "Tyre scrap",
+    "name": "Three Piece TBR",
+    "available_quantity": 5000,
+    "price": 400
+  },
+  {
+    "type": "Tyre scrap",
+    "name": "Shredds",
+    "available_quantity": 12000,
+    "price": 200
+  },
+  {
+    "type": "Tyre scrap",
+    "name": "Mulch",
+    "available_quantity": 15000,
+    "price": 250
+  },
+  {
+    "type": "Tyre scrap",
+    "name": "Rubber Granules/Crum",
+    "available_quantity": 9000,
+    "price": 450
+  }
+]
+[
+  {
+    "type": "Tyre steel scrap",
+    "name": "Pyro Steel",
+    "available_quantity": 9000,
+    "price": 450
+  },
+  {
+    "type": "Tyre steel scrap",
+    "name": "Rubber Crum Steel",
+    "available_quantity": 7000,
+    "price": 400
+  }
+]
+
+
+
+
+
+
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Modal, Button, Form } from 'react-bootstrap';
+import './Admin.css'; // Optional: For custom styles
+
+const Admin = () => {
+    const [scrapItems, setScrapItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [isSubmitting, setIsSubmitting] = useState(false); 
+    const [newItemFormData, setNewItemFormData] = useState({
+        name: '',
+        type: '',
+        available_quantity: '',
+        price: '',
+    });
+
+    // State for Edit Modal
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [currentItem, setCurrentItem] = useState(null);
+    const [formData, setFormData] = useState({
+        name: '',
+        type: '',
+        available_quantity: '',
+        price: '',
+    });
+
+    useEffect(() => {
+        fetchAdminScrapItems();
+    }, []);
+
+    const fetchAdminScrapItems = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/api/admin/scrap');
+            setScrapItems(response.data.scrap_items);
+            setLoading(false);
+        } catch (err) {
+            setError('Failed to fetch scrap items.');
+            setLoading(false);
+        }
+    };
+
+    const handleDelete = async (id) => {
+        if (window.confirm('Are you sure you want to delete this scrap item?')) {
+            try {
+                const response = await axios.delete(`http://localhost:5000/api/admin/scrap/${id}`);
+                setScrapItems(scrapItems.filter(item => item._id !== id));
+                alert('Scrap item deleted successfully.');
+            } catch (err) {
+                alert('Failed to delete scrap item.');
+            }
+        }
+    };
+
+    const handleEdit = (item) => {
+        setCurrentItem(item);
+        setFormData({
+            name: item.name,
+            type: item.type,
+            available_quantity: item.available_quantity,
+            price: item.price,
+        });
+        setShowEditModal(true);
+    };
+
+    const handleCloseEditModal = () => {
+        setShowEditModal(false);
+        setCurrentItem(null);
+    };
+
+    const handleFormChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevData => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        if (!currentItem) return;
+
+        const updatedData = {
+            name: formData.name.trim(),
+            type: formData.type.trim(),
+            available_quantity: Number(formData.available_quantity),
+            price: Number(formData.price),
+        };
+
+        if (isNaN(updatedData.available_quantity) || updatedData.available_quantity < 0 || isNaN(updatedData.price) || updatedData.price < 0) {
+            alert('Available Quantity and Price must be non-negative numbers.');
+            setIsSubmitting(false);
+            return;
+        }
+
+        try {
+            const response = await axios.put(`http://localhost:5000/api/admin/scrap/${currentItem._id}`, updatedData);
+            setScrapItems(scrapItems.map(item => item._id === currentItem._id ? response.data.scrap_item : item));
+            alert('Scrap item updated successfully.');
+            handleCloseEditModal();
+        } catch (err) {
+            alert('Failed to update scrap item.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    const handleNewItemFormChange = (e) => {
+        const { name, value } = e.target;
+        setNewItemFormData(prevData => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    const handleNewItemFormSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        const newData = {
+            name: newItemFormData.name.trim(),
+            type: newItemFormData.type.trim(),
+            available_quantity: Number(newItemFormData.available_quantity),
+            price: Number(newItemFormData.price),
+        };
+
+        if (isNaN(newData.available_quantity) || newData.available_quantity < 0 || isNaN(newData.price) || newData.price < 0) {
+            alert('Available Quantity and Price must be non-negative numbers.');
+            setIsSubmitting(false);
+            return;
+        }
+
+        try {
+            const response = await axios.post('http://localhost:5000/api/admin/scrap', newData);
+            setScrapItems([...scrapItems, response.data.scrap_item]);
+            alert('New scrap item added successfully.');
+            setNewItemFormData({ name: '', type: '', available_quantity: '', price: '' }); // Reset form
+        } catch (err) {
+            alert('Failed to add new scrap item.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    if (loading) return <div className="container mt-5"><p>Loading...</p></div>;
+    if (error) return <div className="container mt-5"><p className="text-danger">{error}</p></div>;
+
+    return (
+        <div className="container mt-5">
+            <h2 className="mb-4">Admin Dashboard</h2>
+
+            {/* Add New Scrap Item Form */}
+            <div className="mb-4">
+                <h3>Add New Scrap Item</h3>
+                <Form onSubmit={handleNewItemFormSubmit}>
+                    <Form.Group controlId="newName">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="name"
+                            value={newItemFormData.name}
+                            onChange={handleNewItemFormChange}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="newType" className="mt-3">
+                        <Form.Label>Type</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="type"
+                            value={newItemFormData.type}
+                            onChange={handleNewItemFormChange}
+                            required
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="newAvailableQuantity" className="mt-3">
+                        <Form.Label>Available Quantity</Form.Label>
+                        <Form.Control
+                            type="number"
+                            name="available_quantity"
+                            value={newItemFormData.available_quantity}
+                            onChange={handleNewItemFormChange}
+                            required
+                            min="0"
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="newPrice" className="mt-3">
+                        <Form.Label>Price</Form.Label>
+                        <Form.Control
+                            type="number"
+                            name="price"
+                            value={newItemFormData.price}
+                            onChange={handleNewItemFormChange}
+                            required
+                            min="0"
+                        />
+                    </Form.Group>
+                    <Button variant="primary" type="submit" className="mt-3" disabled={isSubmitting}>
+                        {isSubmitting ? 'Adding...' : 'Add Scrap Item'}
+                    </Button>
+                </Form>
+            </div>
+
+            <div className="row">
+                {scrapItems.length === 0 ? (
+                    <p>No scrap items available.</p>
+                ) : (
+                    scrapItems.map((item) => (
+                        <div key={item._id} className="col-md-4 mb-4">
+                            <div className="card h-100">
+                                <div className="card-header bg-primary text-white">
+                                    <h5 className="card-title">{item.name}</h5>
+                                </div>
+                                <div className="card-body">
+                                    <p><strong>Type:</strong> {item.type}</p>
+                                    <p><strong>Available Quantity:</strong> {item.available_quantity}</p>
+                                    <p><strong>Price:</strong> ${item.price}</p>
+                                </div>
+                                <div className="card-footer">
+                                    <Button variant="secondary" size="sm" className="me-2" onClick={() => handleEdit(item)}>
+                                        Edit
+                                    </Button>
+                                    <Button variant="danger" size="sm" onClick={() => handleDelete(item._id)}>
+                                        Delete
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                )}
+            </div>
+
+            {/* Edit Modal */}
+            <Modal show={showEditModal} onHide={handleCloseEditModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit Scrap Item</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={handleFormSubmit}>
+                        <Form.Group controlId="formName">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleFormChange}
+                                required
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="formType" className="mt-3">
+                            <Form.Label>Type</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="type"
+                                value={formData.type}
+                                onChange={handleFormChange}
+                                required
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="formAvailableQuantity" className="mt-3">
+                            <Form.Label>Available Quantity</Form.Label>
+                            <Form.Control
+                                type="number"
+                                name="available_quantity"
+                                value={formData.available_quantity}
+                                onChange={handleFormChange}
+                                required
+                                min="0"
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="formPrice" className="mt-3">
+                            <Form.Label>Price</Form.Label>
+                            <Form.Control
+                                type="number"
+                                name="price"
+                                value={formData.price}
+                                onChange={handleFormChange}
+                                required
+                                min="0"
+                            />
+                        </Form.Group>
+                        <Button variant="primary" type="submit" className="mt-3" disabled={isSubmitting}>
+                            {isSubmitting ? 'Updating...' : 'Update'}
+                        </Button>
+                    </Form>
+                </Modal.Body>
+            </Modal>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    );
+};
+
+export default Admin;
