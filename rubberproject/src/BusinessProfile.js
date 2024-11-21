@@ -98,36 +98,37 @@ function BusinessProfile() {
   if (profileExists) {
     return (
       <>
-      <div className='setterbus'>
-      <div className="container" > 
-        <div className="border p-4 rounded bg-gradient bg-primary text-white shadow-lg">
-          <h2 className="text-center mb-4">Your Business Profile</h2>
-          <div className="row">
-            <div className="col-12 col-md-6 mb-3">
-              <p><strong>Company Name:</strong> {profile.companyName}</p>
-            </div>
-            <div className="col-12 col-md-6 mb-3">
-              <p><strong>Phone Number:</strong> {profile.phoneNumber}</p>
-            </div>
-            <div className="col-12 col-md-6 mb-3">
-              <p><strong>Email:</strong> {profile.email}</p>
-            </div>
-            <div className="col-12 col-md-6 mb-3">
-              <p><strong>GST Number:</strong> {profile.gstNumber}</p> 
-            </div>
-            <div className="col-12 col-md-6 mb-3">
-              <p><strong>Bill to Address:</strong> {profile.billAddress}</p>  
-            </div>
-            <div className="col-12 col-md-6 mb-3">
-              <p><strong>Ship to Address:</strong> {profile.shipAddress}</p> 
+        <div className="setterbus">
+          <div className="container">
+            <div className="business-profile-container">
+              <h2 className="text-center mb-4  tyre-scrap-heading ">Your Business Profile</h2>
+              <div className="row">
+                <div className="col-12 col-md-6 mb-3 text-black">
+                  <p><strong>Company Name:</strong> {profile.companyName}</p>
+                </div>
+                <div className="col-12 col-md-6 mb-3 text-black">
+                  <p><strong>Phone Number:</strong> {profile.phoneNumber}</p>
+                </div>
+                <div className="col-12 col-md-6 mb-3 text-black">
+                  <p><strong>Email:</strong> {profile.email}</p>
+                </div>
+                <div className="col-12 col-md-6 mb-3 text-black">
+                  <p><strong>GST Number:</strong> {profile.gstNumber}</p>
+                </div>
+                <div className="col-12 col-md-6 mb-3 text-black">
+                  <p><strong>Bill to Address:</strong> {profile.billAddress}</p>
+                </div>
+                <div className="col-12 col-md-6 mb-3 text-black">
+                  <p><strong>Ship to Address:</strong> {profile.shipAddress}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      </div>
       </>
     );
   }
+  
 
   return (
     <>
@@ -215,7 +216,7 @@ function BusinessProfile() {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-gradient text-white w-100 mt-3">Create Profile</button>
+        <button type="submit" className="btn btn-gradient text-black w-100 mt-3">Create Profile</button>
       </form>
     </div>
     </div>

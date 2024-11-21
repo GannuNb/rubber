@@ -84,7 +84,22 @@ router.post('/upload-pdf', authenticate, upload.single('pdf'), async (req, res) 
         },
       ],
     };
+    // Email options for the admin
+    const adminMailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.ADMIN_EMAIL, // Ensure this is set in your environment variables
+      subject: 'New Order Summary',
+      text: `An order has been placed by ${userEmail}. Please find the order summary attached.`,
+      attachments: [
+        {
+          filename: 'order-summary.pdf',
+          content: pdfFile.buffer,
+        },
+      ],
+    };
 
+
+    await transporter.sendMail(adminMailOptions);
     await transporter.sendMail(mailOptions);
     res.status(200).json({ message: 'Email sent successfully.' });
   } catch (error) {

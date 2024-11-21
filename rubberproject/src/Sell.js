@@ -4,6 +4,10 @@ import verify from './images/verify.jpeg';
 import sell from './images/sell.jpeg';
 import './Sell.css';
 import { useNavigate } from 'react-router-dom';
+import SrenComponent from './SrenComponent';
+import SellTop from './SellTop';
+
+
 const Sell = () => {
     const [material, setMaterial] = useState('Tyre scrap'); 
     const [applications, setApplications] = useState([]);
@@ -128,20 +132,14 @@ const Sell = () => {
     };
     
     return (
+        <>
+        <div className='setbgimg'>
         <div className='setter'>
-            <h2>Your profile details</h2>
-            {profile ? (
-                <>
-                    <p><strong>Company Name:</strong> {profile.companyName}</p>
-                    <p><strong>Phone Number:</strong> {profile.phoneNumber}</p>
-                    <p><strong>Email:</strong> {profile.email}</p>
-                </>
-            ) : (
-                <p>{error || "Loading profile..."}</p>
-            )}
-
+            <SellTop/>
+            
+ 
             <div className="container" style={{ marginTop: '40px', marginBottom: '20px' }}>
-                <h2 className="text-center">Upload Your Scrap Details</h2>
+                <h2 className="tyre-scrap-heading">Upload Your Scrap Details</h2>
 
                 {message && <div className="alert alert-success">{message}</div>}
                 {error && <div className="alert alert-danger">{error}</div>}
@@ -203,7 +201,27 @@ const Sell = () => {
                     </button>
                 </form>
             </div>
+            <SrenComponent/>
+            
+            <h2 className="text-center my-5">Your Profile Details</h2>
+{profile ? (
+  <div className="card mx-auto" style={{ maxWidth: "500px", padding: "20px", borderRadius: "10px", boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)" }}>
+    <div className="card-body">
+      <p className="card-text"><strong>Company Name:</strong> {profile.companyName}</p>
+      <p className="card-text"><strong>Phone Number:</strong> {profile.phoneNumber}</p>
+      <p className="card-text"><strong>Email:</strong> {profile.email}</p>
+    </div>
+  </div>
+) : (
+  <div className="text-center my-5">
+    <p className="text-muted">{error || "Loading profile..."}</p>
+  </div>
+)}
+
         </div>
+
+
+        </div></>
     );
 };
 

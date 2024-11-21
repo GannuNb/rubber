@@ -66,3 +66,24 @@ h2.text-center {
         margin-top: 12%;
     }
 }
+
+/* For the background color */
+.business-profile-container {
+    
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .business-profile-container:hover {
+   
+    background-color:   #4596ec; /* Blue background */
+  }
+  
+  /* Optional: Adjust the hover effect for the text */
+  .business-profile-container:hover h2,
+  .business-profile-container:hover p{
+    color: #fff;
+  }
+  

@@ -26,6 +26,13 @@ import ContactUs from './ContactUs.js';
 import Getorders from './Getorders.js';
 import Sellreport from './Sellreport.js';
 import Userprofile from './Userprofile.js';
+import TyreScrap from './Tyrescrap.js';
+import Pyro_oil from './Pyro_oil.js';
+import Tyresteelscrap from './Tyresteelscrap.js';
+import ChatWidget from './Components/ChatWidget.js';
+
+
+
 function App() {
   const location = useLocation();
 
@@ -62,9 +69,19 @@ function App() {
           <Route exact path="/Buyreport" element={<Buyreport />} />
           <Route exact path="/Sellerreport" element={<Sellreport />} />
           <Route exact path="/userprofile" element={<Userprofile />} />
+          <Route exact path="/Tyrescrap" element={<TyreScrap/>} />
+          <Route exact path="/pyro_oil" element={<Pyro_oil/>} />
+          <Route exact path="/TyresteelScrap" element={<Tyresteelscrap/>} />
+      
+
+         
+      
+         
+         
         </Routes>
       </div>
       <Footer />
+      <ChatWidget />
     </>
   );
 }

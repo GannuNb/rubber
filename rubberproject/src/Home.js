@@ -9,9 +9,15 @@ import home from './images/home.jpeg';
 import logo from './images/logo.jpeg';
 import { Carousel } from "react-responsive-carousel";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import carl from "./images/car1.webp"
-import car2 from "./images/car2.webp"
+import carl from "./images/c1.webp"
+import car2 from "./images/c2.jpg"
+import car3 from "./images/c3.jpg"
+import car4 from "./images/c4.jpg"
 import { useNavigate } from 'react-router-dom';
+import TechnologyCards from './TechnologyCards';
+import HappyClients from './Clients';
+import SrenComponent from './SrenComponent';
+
 
 const Home = () => {
     const [scrapItems, setScrapItems] = useState([]); 
@@ -66,16 +72,18 @@ const Home = () => {
                             interval={1500}
                         >
                             <div>
-                                <img  src={carl} alt="First Slide" className="carousel-image"/>
-                                <p className="legend">Tyre scrap image1</p>
-                            </div>
-                            <div>
                                 <img  src={car2} alt="Second Slide" className="carousel-image" />
-                                <p className="legend">Tyre scrap image2</p>
+                                <p className="legend">Mulch</p>
                             </div>
+                            
                             <div>
-                                <img  src={home} alt="Third Slide" className="carousel-image"/>
-                                <p className="legend">Tyre scrap image3</p>
+                                <img  src={carl} alt="First Slide" className="carousel-image"/>
+                                <p className="legend">Tyre Steel Scrap</p>
+                            </div>
+                            
+                            <div>
+                                <img  src={car3} alt="Third Slide" className="carousel-image"/>
+                                <p className="legend">Tyre Steel Scrap</p>
                             </div>
                         
                 
@@ -89,222 +97,152 @@ const Home = () => {
                 <div className="row">
                     {/* Apply margin-left on larger screens and adjust on small screens */}
                     <div className="col-lg-10 offset-lg-2 col-md-12">
-                        {/* About Us Section */}
-                        <div className="bg-light py-5" style={{ width: '100%' }}>
-                            <div className="text-center mx-2">
-                               
 
-                                <h2 className="display-4 fw-bold mb-3 text-dark">About Us</h2>
-                                <p className="lead text-muted mb-4" style={{ lineHeight: '1.6', textAlign: 'justify', maxWidth: '1000px', margin: '0 auto' }}>
-                                At Vikah Rubber, we are committed to being a leading provider of high-quality rubber products that meet the diverse
-                                 needs of our customers. Our focus on innovation and sustainability drives us to develop solutions that not only 
-                                 enhance performance but also minimize environmental impact. With a team of experienced professionals and a 
-                                 dedication to excellence, we strive to exceed customer expectations through reliable 
-                                 service and superior products. Join us on our journey to a greener, more sustainable 
-                                 future.                                </p>
 
-                                <button className="btn btn-success btn-lg"
-                                    style={{
-                                        padding: '10px 30px',
-                                        fontSize: '18px',
-                                        boxShadow: '0px 4px 10px rgba(0,0,0,0.2)',
-                                        transition: 'background-color 0.3s, transform 0.3s',
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        e.target.style.backgroundColor = '#218838'; 
-                                        e.target.style.transform = 'scale(1.05)';
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.target.style.backgroundColor = '#28a745'; 
-                                        e.target.style.transform = 'scale(1)';
-                                    }}
-                                >
-                                    Learn More
-                                </button>
-                            </div>
-                        </div>
 
-                        {/* Scrap Items Section */}
-                        <div className="container marketing mt-5">
-                            <div className="row">
-                                {/* Tyre Scrap Card */}
-                                <div className="col-lg-4 col-md-6 mb-4">
-                                    <div className="card">
-                                        <div className="card-header text-center">
-                                            <h2 className="card-title">Tyre Scrap</h2>
-                                        </div>
-                                        <img
-                                            className="rounded-circle mx-auto d-block mt-3"
-                                            src={tyreScrap}
-                                            alt="Tyre Scrap"
-                                            width="140"
-                                            height="140"
-                                        />
-                                        <div className="card-body">
-                                            {/* Material List */}
-                                            <div>
-                                                {categorizedItems["Tyre scrap"]?.map((item, index) => (
-                                                    <div key={index} className="material-item">
-                                                        <div className="material-info">
-                                                            <span className="material-name">{item.name}</span><br />
-                                                            <small>Qty: {item.available_quantity}</small>
-                                                        </div>
-                                                        <div>
-                                                        <button
-                                                onClick={() => handleOrderClick(item.name)} 
-                                                className="btn btn-primary btn-sm order-button">
-                                                Order
-                                            </button>
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                   
+                        <div className="container mt-5">  
+                        <h2 className="display-4 fw-bold mb-3 text-black products-heading text-center d-flex  justify-content-center align-items-center">Our Products</h2>    
+                                              
+    <div className="row justify-content-center align-items-center">
+        
 
-                                {/* Pyro Oil Card */}
-                                <div className="col-lg-4 col-md-6 mb-4">
-                                    <div className="card">
-                                        <div className="card-header text-center">
-                                            <h2 className="card-title">Pyro Oil</h2>
-                                        </div>
-                                        <img
-                                            className="rounded-circle mx-auto d-block mt-3"
-                                            src={pyroOil}
-                                            alt="Pyro Oil"
-                                            width="140"
-                                            height="140"
-                                        />
-                                        <div className="card-body">
-                                            {/* Material List */}
-                                            <div>
-                                                {categorizedItems["Pyro oil"]?.map((item, index) => (
-                                                    <div key={index} className="material-item">
-                                                        <div className="material-info">
-                                                            <span className="material-name">{item.name}</span><br />
-                                                            <small>Qty: {item.available_quantity}</small>
-                                                        </div>
-                                                        <div>
-                                                        <button
-                                                onClick={() => handleOrderClick(item.name)} 
-                                                className="btn btn-primary btn-sm order-button">
-                                                Order
-                                            </button>
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Tyre Steel Scrap Card */}
-                                <div className="col-lg-4 col-md-6 mb-4">
-                                    <div className="card">
-                                        <div className="card-header text-center">
-                                            <h2 className="card-title">Tyre Steel Scrap</h2>
-                                        </div>
-                                        <img
-                                            className="rounded-circle mx-auto d-block mt-3"
-                                            src={istock}
-                                            alt="Tyre Steel Scrap"
-                                            width="140"
-                                            height="140"
-                                        />
-                                        <div className="card-body">
-                                            {/* Material List */}
-                                            <div>
-                                                {categorizedItems["Tyre steel scrap"]?.map((item, index) => (
-                                                    <div key={index} className="material-item">
-                                                        <div className="material-info">
-                                                            <span className="material-name">{item.name}</span><br />
-                                                            <small>Qty: {item.available_quantity}</small>
-                                                        </div>
-                                                        <div>
-                                                        <button
-                                                onClick={() => handleOrderClick(item.name)} 
-                                                className="btn btn-primary btn-sm order-button">
-                                                Order
-                                            </button>
-                                                            </div>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Additional sections like Features and Testimonials */}
-                        <div className="container text-center mt-5">
-                            <img 
-                                src={home} 
-                                alt="Home" 
-                                className="img-fluid" 
-                                style={{ width: '50%', maxWidth: '1000px' }} 
-                            />
-                        </div>
-
-                        {/* Features Section */}
-                        <div className="container mt-5">
-                            <div className="row text-center mb-4">
-                                <div className="col-md-3 col-sm-6 mb-3">
-                                    <div className="feature-panel">
-                                        <i className="fas fa-shopping-cart"></i>
-                                        <h5>Easy Buying</h5>
-                                        <p>Browse products and make purchases with a seamless experience.</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-3 col-sm-6 mb-3">
-                                    <div className="feature-panel">
-                                        <i className="fas fa-store"></i>
-                                        <h5>Simple Selling</h5>
-                                        <p>List your products easily and reach a wide range of buyers.</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-3 col-sm-6 mb-3">
-                                    <div className="feature-panel">
-                                        <i className="fas fa-user-check"></i>
-                                        <h5>Verified Sellers</h5>
-                                        <p>We ensure all sellers are verified, so you can trust who you buy from.</p>
-                                    </div>
-                                </div>
-                                <div className="col-md-3 col-sm-6 mb-3">
-                                    <div className="feature-panel">
-                                        <i className="fas fa-headset"></i>
-                                        <h5>24/7 Support</h5>
-                                        <p>Our customer support team is available 24/7 to help you with any inquiries.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Testimonials Section */}
-                        <div className="container mt-5">
-                    <h2 className="fw-bold">What Our Users Say</h2>
-                    <div className="row mt-4">
-                        <div className="col-md-4 col-sm-12 mb-4">
-                            <div className="testimonial">
-                                <p>"The buying process was so easy and the customer support was amazing!"</p>
-                                <h6>- Sarah, Buyer</h6>
-                            </div>
-                        </div>
-                        <div className="col-md-4 col-sm-12 mb-4">
-                            <div className="testimonial">
-                                <p>"I quickly sold my products and had a smooth experience with the platform."</p>
-                                <h6>- John, Seller</h6>
-                            </div>
-                        </div>
-                        <div className="col-md-4 col-sm-12 mb-4">
-                            <div className="testimonial">
-                                <p>"This is the best marketplace I have ever used. I totally recommend it for you all!"</p>
-                                <h6>- Alex, Buyer & Seller</h6>
-                            </div>
-                        </div>
+        {/* Tyre Scrap Card */}
+        <div className="col-lg-4 col-md-6 col-sm-12">
+        
+            <div className="flip-card">
+                <div className="flip-card-inner">
+                    <div className="flip-card-front text-center">
+                        <img
+                            className="rounded-circle mt-3"
+                            src={tyreScrap}
+                            alt="Tyre Scrap"
+                            width="140"
+                            height="140"
+                        />
+                        <h2 className="mt-3 headings">Tyre Scrap</h2>
                     </div>
-                </div>
+                    <div className="flip-card-back">
+                        <h3>Products</h3>
+                        <ul className="product-list text-start">
+                            <li>Multiple_Baled_Tyres_PCR</li>
+                            <li>Baled Tyres TBR</li>
+                            <li>ThreePiecePCR</li>
+                            <li>ThreePieceTBR</li>
+                            <li>Shredds</li>
+                            <li>Mulch</li>
+                            <li>RubberGranules/crum</li>
+                        </ul>
+                        <Link to="/Tyrescrap">
+                            <button className="btn btn-light btn-sm">
+                                View Products
+                            </button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {/* Pyro Oil Card */}
+        <div className="col-lg-4 col-md-6 col-sm-12">
+            <div className="flip-card">
+                <div className="flip-card-inner">
+                    <div className="flip-card-front text-center">
+                        <img
+                            className="rounded-circle mt-3"
+                            src={pyroOil}
+                            alt="Pyro Oil"
+                            width="140"
+                            height="140"
+                        />
+                        <h2 className="mt-3 headings">Pyro Oil</h2>
+                    </div>
+                    <div className="flip-card-back">
+                        <h3>Products</h3>
+                        <ul className="product-list text-start">
+                            <li>No Products</li>
+                        </ul>
+                        <button className="btn btn-light btn-sm">
+                            View Products
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {/* Tyre Steel Scrap Card */}
+        <div className="col-lg-4 col-md-6 col-sm-12">
+            <div className="flip-card">
+                <div className="flip-card-inner">
+                    <div className="flip-card-front text-center">
+                        <img
+                            className="rounded-circle mt-3"
+                            src={istock}
+                            alt="Tyre Steel Scrap"
+                            width="140"
+                            height="140"
+                        />
+                        <h2 className="mt-3 headings">Tyre Steel Scrap</h2>
+                    </div>
+                    <div className="flip-card-back">
+                        <h3>Products</h3>
+                        <ul className="product-list text-start">
+                            <li>Pyro Steel</li>
+                            <li>Rubber Crum Steel</li>
+                        </ul>
+                        <Link to="/TyresteelScrap">
+                            <button className="btn btn-light btn-sm">
+                                View Products
+                            </button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                {/* About Us Section */}
+<div className="bg-gradient py-5" style={{ width: '100%' }}>
+  <div className="container text-center mx-2">
+    <h2 className="display-4 fw-bold mb-3 text-black products-heading">About Us</h2>
+    <p className="lead text-light mb-4 text-black" style={{ lineHeight: '1.6', textAlign: 'justify', maxWidth: '800px', margin: '0 auto' }}>
+      At Vikah Rubber, we are committed to being a leading provider of high-quality rubber products that meet the diverse
+      needs of our customers. Our focus on innovation and sustainability drives us to develop solutions that not only 
+      enhance performance but also minimize environmental impact. With a team of experienced professionals and a 
+      dedication to excellence, we strive to exceed customer expectations through reliable 
+      service and superior products. Join us on our journey to a greener, more sustainable future.
+    </p>
+
+  </div>
+</div>
+
+
+
+
+
+<TechnologyCards/>
+
+
+
+
+
+
+
+
+
+
+                       
+                            <SrenComponent />
+                            <Link style={{textDecoration:"none"}} to="/Sell">
+                            <button 
+                            className="btn btn-primary mt-4 d-block mx-auto" 
+                            style={{ fontSize: '16px', padding: '10px 20px', maxWidth: '300px' }}>
+                            Start Selling
+                            </button></Link>
+                            
+                       <HappyClients/>
+                        
                     </div>
                 </div>
             </div>

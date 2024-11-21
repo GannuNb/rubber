@@ -91,21 +91,24 @@ body {
 
 
 .navbar .input-group {
-  margin-left: auto;
+  margin-left: 30%;
   margin-right: auto;
   justify-content: center;
-  width: 100%;
+  width: 30%;
 }
 
 .navbar .form-control {
   width: 300px;
 }
 
-
+.logoset{
+        width: 100%;
+        height: -1px;
+}
 .navbar-brand img {
   height: 50px;
-  width: 200%;
-  margin-right: 10px;
+  width: 130%;
+  margin-right: 0;
 }
 
 
@@ -169,3 +172,54 @@ body {
 .product-dropdown .dropdown-menu {
   z-index: 1000; 
 }
+
+
+
+@media (min-width:300px) and (max-width:600px){
+  .navbar .input-group {
+    margin-left: 10%;
+   
+ 
+    width: 40%;
+  }
+  .navbar-brand img {
+  height: 36px;
+  width: 100%;
+  margin-right: 0;
+  margin-left: -38%;
+  
+  }
+  .dis{
+    display: none !important;
+  }
+  .logodis{
+    margin-right: 5%;
+
+  }
+ 
+}
+@media (min-width:600px) and (max-width:1100px){
+  .navbar .input-group {
+    margin-left: 10%;
+   
+ 
+    width: 40%;
+  }
+  .navbar-brand img {
+  height: 36px;
+  width: 100%;
+  margin-right: 0;
+  margin-left: -270%;
+  
+  }
+  .dis{
+    display: none !important;
+  }
+  .logodis{
+    margin-right: 5%;
+
+  }
+ 
+}
+
+

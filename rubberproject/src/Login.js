@@ -54,19 +54,12 @@ export default function Login() {
   };
 
   return (
-    <div 
-      style={{
-        backgroundImage: 'url("https://images.unsplash.com/photo-1528323273322-d81458248d40?q=80&w=1529&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")',
-        height: '100vh', 
-        backgroundSize: 'cover', 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center'
-      }}
-    >
+
+    <div className="signup-container">
     
-      <div className='container'>
-        <form className='w-50 m-auto border bg-dark border-success rounded' onSubmit={handleSubmit}>
+      <div className='form-container'>
+        <form className='signup-form' onSubmit={handleSubmit}>
+        <h2 className="form-heading">Login</h2>
           <div className="m-3">
             <label htmlFor="exampleInputEmail1" className="form-label text-white">Email address</label>
             <input 
@@ -78,7 +71,8 @@ export default function Login() {
               aria-describedby="emailHelp" 
               required 
             />
-            <div id="emailHelp" className="form-text">We'll never share your email with anyone.</div>
+         
+
           </div>
 
           <div className="m-3">
