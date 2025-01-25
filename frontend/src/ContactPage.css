@@ -155,7 +155,7 @@ textarea {
   }
 
   .info-box {
-    width: 85%;
+    width: 100%;
     margin-bottom: 20px;
     text-align: center; /* Center the text and icon on mobile */
   }
@@ -168,7 +168,7 @@ textarea {
 @media (min-width: 300px) and (max-width: 768px){
   .contact-page {
     margin-left: 0%;
-    width: 85%;
+    width: 100%;
   }
   
 }

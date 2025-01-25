@@ -210,15 +210,15 @@
   
   @media (min-width: 300px) and (max-width: 768px){
     .about-image img {
-      width: 250px;
+      width: 320px;
     }
     .about-text p {
       margin-left: 0%;
     }
     .testimonial-card{
       flex-direction: column;
-      width: 90%;
-      height: 170px;
+      width: 100%;
+      height: 210px;
     }
     .testimonial-carousel{
       flex-direction: column;
