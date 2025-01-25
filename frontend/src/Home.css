@@ -1,0 +1,252 @@
+.image-overlay-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.image-overlay-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0.7); /* Darken the image slightly */
+}
+
+.image-overlay-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, /* From left to right */
+    rgba(135, 206, 250, 0.5) 0%, /* Light Blue with 50% opacity */
+    rgba(255, 99, 71, 0.5) 100% /* Light Maroon-Red with 50% opacity */
+  );
+  z-index: 1;
+}
+
+
+
+.icon-overlay {
+  position: absolute;
+  bottom: 15px; /* Position at the bottom */
+  left: 15px; /* Position to the left */
+  display: flex;
+  align-items: center;
+  z-index: 2; /* Make sure it appears above the overlay */
+  color: #fff; /* White icon and text */
+  font-size: 1.5rem; /* Icon size */
+}
+
+.icon-overlay i {
+  font-size: 2rem; /* Larger icon */
+  margin-right: 8px; /* Spacing between icon and text */
+}
+
+.icon-overlay span {
+  font-size: 1rem; /* Text size */
+  font-weight: bold; /* Bold text */
+}
+
+.card-body {
+  background: #f8f9fa; /* Light gray background */
+  border-top: 1px solid #e9ecef; /* Subtle top border */
+  padding: 15px;
+  text-align: center; /* Center-align text */
+  flex-grow: 1; /* Ensure it fills remaining space */
+}
+
+.card-body p {
+  margin-bottom: 0 !important; /* Remove bottom margin for better spacing */
+}
+
+.card-text {
+  color: #0c2957 !important; /* Set text color to #0c2957 */
+  font-size: 1rem; /* Slightly larger text */
+  line-height: 1.5; /* Increased line height for better readability */
+}
+
+.card-body .card-text {
+  font-weight: 400; /* Normal font weight */
+}
+
+.card-text:hover {
+  color: #0d6efd; /* Change color to blue on hover */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: color 0.3s ease;
+}
+
+.no-link-style {
+  display: block !important; /* Ensure the link behaves like a block element */
+  text-decoration: none !important; /* Remove default underline */
+  color: inherit !important; /* Inherit color from parent element */
+  
+}
+
+.no-link-style:hover {
+  text-decoration: none; /* Prevent underline on hover */
+  color: inherit; /* Inherit color from the parent */
+}
+
+
+
+
+h2 {
+  color: #343a40; /* Dark heading color */
+  font-size: 2rem;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #0d6efd; /* Primary blue color */
+  margin: 0.5rem auto 0;
+}
+
+
+/* Section Styling */
+.recycling-section {
+  padding: 40px;
+  text-align: center;
+  background-color: #f8f9fa;
+}
+
+.recycling-title {
+  font-size: 2.5rem;
+  font-weight: 600; /* Reduced boldness */
+  color: #0c2957; /* Dark blue */
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.recycling-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #0c2957; /* Dark blue */
+  margin: 0.5rem auto 0;
+}
+
+/* Cards Container */
+.recycling-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+/* Individual Card */
+.recycling-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recycling-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Icon */
+.recycling-card-icon {
+  font-size: 3.5rem; /* Adjust icon size */
+  color: #0c2957; /* Dark blue */
+  margin-bottom: 20px;
+}
+
+/* Card Step with Line */
+.recycling-card-step {
+  font-size: 0.9rem;
+  font-weight: 600; /* Reduced boldness */
+  color: #0c2957; /* Dark blue */
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.recycling-card-step span {
+  flex: 1;
+  height: 1px;
+  background-color: #0c2957; /* Dark blue */
+}
+
+/* Card Title */
+.recycling-card-title {
+  font-size: 1.5rem;
+  font-weight: 600; /* Reduced boldness */
+  color: #0c2957; /* Dark blue */
+  margin-bottom: 15px;
+}
+
+/* Card Text */
+.recycling-card-text {
+  font-size: 1rem;
+  font-weight: 500; /* Slightly reduced boldness */
+  color: #0c2957; /* Dark blue */
+  line-height: 1.8;
+}
+
+
+/* Section Styling */
+.reasons-section {
+  background-color: #1c163c; /* Dark purple background */
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reasons-content {
+  max-width: 800px;
+  text-align: left;
+  color: #ffffff;
+}
+
+/* Title Styling */
+.reasons-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffffff; /* White color */
+  text-align: left;
+}
+
+.reasons-title span {
+  color: #ffffff; /* White color */
+}
+
+/* List Styling */
+.reasons-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reasons-list li {
+  font-size: 1.2rem;
+  font-weight: 600; /* Medium bold */
+  color: #ffffff; /* White */
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.reasons-list li i {
+  font-size: 1.5rem; /* Icon size */
+  margin-right: 10px;
+  color: #ffffff; /* White */
+}
+
+
+

@@ -1,0 +1,228 @@
+/* Global Styles */
+.about-page {
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  /* Header Section */
+  .about-header {
+    position: relative;
+    background-image: url("./images/abt1.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .header-overlay {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 30px;
+    width: 80%;
+    border-radius: 8px;
+  }
+  
+  .header-overlay h1 {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .header-overlay p {
+    margin: 10px 0 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  
+  /* Content Section */
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  
+  .about-row {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  
+  .about-image {
+    flex: 1;
+    max-width: 500px;
+  }
+  
+  .about-image img {
+    width: 140%;
+    border-radius: 8px;
+  }
+  
+  .about-text {
+    flex: 2;
+    padding: 10px;
+  }
+  
+  .about-text h2 {
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 20px;
+    margin-left: 15%;
+  }
+  
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    margin-top: 5%;
+    margin-left: 20%;
+  }
+  
+  .about-text ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .about-text ul li {
+    margin-bottom: 10px;
+  }
+  
+  .testimonials {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.testimonial-heading {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.testimonial-carousel {
+  display: flex;
+  justify-content: space-around; /* Ensures space is evenly distributed between cards */
+  flex-direction: row; /* Align the cards in a single row */
+}
+
+.testimonial-card {
+  width: 20%; /* Decreased width of each card to fit three in a row */
+  height: 300px; /* Increased height of each card */
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Ensures content is stacked vertically inside the card */
+  justify-content: space-between; /* Spreads the content evenly within the card */
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px; /* Reduced space between stars and feedback message */
+}
+
+.star {
+  color: #ff9900;
+  font-size: 18px;
+}
+
+.feedback-message {
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 8px; /* Reduced space between feedback message and provider's name */
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 8px; /* Reduced space between dots and feedback provider */
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin: 3px;
+}
+
+.feedback-provider {
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+  
+  
+.testimonial-card {
+    width: 20%; /* Decreased width of each card to fit three in a row */
+    height: 300px; /* Increased height of each card */
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Ensures content is stacked vertically inside the card */
+    justify-content: space-between; /* Spreads the content evenly within the card */
+    position: relative; /* Make sure the pseudo-element is positioned correctly */
+    overflow: hidden; /* Hide the flash effect outside the card */
+    transition: background-color 0.3s ease-in-out; /* Smooth background color transition */
+  }
+  
+  .testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00bfff; /* Changed to Light Blue */
+    transform: translateY(-100%); /* Start the flash off-screen */
+    transition: transform 0.5s ease-in-out; /* Smooth transition for the flash */
+    z-index: 0; /* Place the flash behind the content */
+  }
+  
+  .testimonial-card:hover::before {
+    transform: translateY(0); /* Move the flash from top to bottom */
+  }
+  
+  .testimonial-card:hover {
+    background-color: #f0f0f0; /* Optional: Change the background color of the card */
+  }
+  
+  .testimonial-card .rating, 
+  .testimonial-card .feedback-message, 
+  .testimonial-card .dots, 
+  .testimonial-card .feedback-provider {
+    position: relative; /* Ensure text elements appear on top of the flash effect */
+    z-index: 1; /* Make sure the text is above the flash */
+  }
+  
+  @media (min-width: 300px) and (max-width: 768px){
+    .about-image img {
+      width: 250px;
+    }
+    .about-text p {
+      margin-left: 0%;
+    }
+    .testimonial-card{
+      flex-direction: column;
+      width: 90%;
+      height: 170px;
+    }
+    .testimonial-carousel{
+      flex-direction: column;
+      gap: 20px;
+
+    }
+  }

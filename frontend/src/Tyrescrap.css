@@ -1,0 +1,14 @@
+/* Hide the arrow by default */
+.arrow-icon {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    margin-left: 10%;
+  }
+  
+  /* Show the arrow when card is hovered */
+  .card:hover .arrow-icon {
+    opacity: 1;
+    visibility: visible;
+  }
+  

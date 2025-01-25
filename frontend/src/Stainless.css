@@ -1,0 +1,21 @@
+.full-width-heading {
+  background-color: #333;
+}
+
+h6 {
+  font-weight: bold;
+}
+
+.btn-link {
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.border-start {
+  border-color: #ccc;
+}
+
+.rounded-circle {
+  border: 2px solid #ddd;
+}
