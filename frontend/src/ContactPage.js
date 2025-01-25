@@ -31,8 +31,9 @@ function ContactPage() {
 
     emailjs
       .send(
-        "service_whgqpt3", // Your EmailJS Service ID
-        "template_3xkjqi9", // Correct Template ID
+        "service_ptts9gd", 
+        // Your EmailJS Service ID
+        "template_wymsr1x", // Correct Template ID
         {
           firstName: formData.firstName,
           lastName: formData.lastName,
@@ -40,7 +41,7 @@ function ContactPage() {
           phone: formData.phone,
           message: formData.message,
         },
-        "rGC6njAJ-HHt3LiMH" // Your EmailJS User ID
+        "qZKYs5oMQDM7P0V0-" // Your EmailJS User ID
       )
       .then(
         (result) => {
@@ -88,10 +89,11 @@ function ContactPage() {
             </div>
             <div className="text">
               <h3>Address</h3>
-              <p>71-75 Shelton Street, Covent Garden, London - WC2H 9JQ</p>
+              <p>FDRK 4258, Compass Building, Al Shohada Road, AL Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE</p>
             </div>
           </div>
         </div>
+
 
         <div className="info-box">
           <div className="icon-text">
@@ -100,7 +102,7 @@ function ContactPage() {
             </div>
             <div className="text">
               <h3>Call us on</h3>
-              <p>Tel: 02080898156</p>
+              <p>Contact: +971585513239</p>
             </div>
           </div>
         </div>
@@ -113,7 +115,7 @@ function ContactPage() {
             <div className="text">
               <h3>Mail at</h3>
               <p>
-                For General Queries: cs@lavarubber.com
+                For General Queries: info@lavarubberllc.com
                 <br />
                 For Sales: sales@lavarubber.com
                 <br />
