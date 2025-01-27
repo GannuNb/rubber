@@ -24,25 +24,25 @@ function Home() {
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img
-              src={car3}
-              className="d-block w-100 h-50"
-              style={{ objectFit: "cover" }}
+              src={car1}
+              className="d-block w-100"
+              style={{ objectFit: "cover", height: "80vh" }} // Adjusted height to 60vh for responsiveness
               alt="Car 1"
             />
           </div>
           <div className="carousel-item">
             <img
-              src={car2}
-              className="d-block w-100 h-50"
-              style={{ objectFit: "cover" }}
+              src={car3}
+              className="d-block w-100"
+              style={{ objectFit: "cover", height: "80vh" }} // Adjusted height to 60vh for responsiveness
               alt="Car 2"
             />
           </div>
           <div className="carousel-item">
             <img
-              src={car1}
-              className="d-block w-100 h-50"
-              style={{ objectFit: "cover" }}
+              src={car2}
+              className="d-block w-100"
+              style={{ objectFit: "cover", height: "80vh" }} // Adjusted height to 60vh for responsiveness
               alt="Car 3"
             />
           </div>
@@ -73,6 +73,8 @@ function Home() {
         </button>
       </div>
 
+
+
       {/* Content Section */}
       <div className="container py-5">
         <div className="row align-items-center">
@@ -83,45 +85,11 @@ function Home() {
 
           {/* Right Side: Text */}
           <div className="col-md-6">
-            <h2 className="fw-bold text-center fs-1">Welcome To LAVA RUBBER</h2>
-            {/* Dotted structure */}
-            <div className="d-flex align-items-center justify-content-center mb-3">
-              {/* Left small dot */}
-              <span
-                className="d-inline-block"
-                style={{
-                  width: "0.6em",
-                  height: "0.6em",
-                  borderRadius: "50%",
-                  backgroundColor: "black",
-                  marginRight: "1em",
-                }}
-              ></span>
-              {/* Middle big dot */}
-              <span
-                className="d-inline-block"
-                style={{
-                  width: "0.8em",
-                  height: "0.8em",
-                  borderRadius: "50%",
-                  backgroundColor: "black",
-                  marginRight: "1em",
-                }}
-              ></span>
-              {/* Right small dot */}
-              <span
-                className="d-inline-block"
-                style={{
-                  width: "0.6em",
-                  height: "0.6em",
-                  borderRadius: "50%",
-                  backgroundColor: "black",
-                }}
-              ></span>
-            </div>
+       
+
             <p className="text-muted text-left text-justify mx-5 fs-5">
               <b>
-                Lava Rubber was formed in the UK to operate with the most modern
+                Lava Rubber was formed in the UAE to operate with the most modern
                 recycling methods to recycle Metal and Rubber Scrap.
               </b>
             </p>

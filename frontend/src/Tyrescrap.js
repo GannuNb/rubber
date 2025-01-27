@@ -28,7 +28,7 @@
                   </div>
                   <div className="card-body text-center">
                     <p style={{ color: "#0c2957" }} className="card-text text-muted">
-                      Lavarubber Limited can supply rubber crumb in different ...
+                      Lava Rubber Limited can supply rubber crumb in different ...
                     </p>
                   </div>
                 </div>

@@ -1,17 +1,15 @@
 import React from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card, Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import rg1 from "./images/rg1.jpg";
 import rg2 from "./images/rg2.jpg";
 import rg3 from "./images/rg3.jpg";
 import rg4 from "./images/rg4.jpg";
-import './Stainless.css';
+import './Stainless.css'; // Add any custom styles here
 import fm1 from "./images/fm1.jpg";
 import rc1 from "./images/rc2.jpg";
 import bt1 from "./images/bt1.jpeg";
-
-
 
 function RubberGranules() {
   return (
@@ -21,72 +19,105 @@ function RubberGranules() {
       </div>
       <Container className="py-5">
         <Row>
-          <Col md={8} className="text-left">
-          <h1>Rubber Granules</h1>
-            <p>We can Supply Rubber Granules of different sizes ranging from 0-2mm and 2-6mm for usage in different applications like:</p>
+          {/* Carousel on the Left */}
+          <Col md={6}>
+            <Carousel style={{ marginTop:"18%" }}>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src={rg1}
+                  alt="Rubber Granules 1"
+                  style={{ height: "500px", objectFit: "cover" }}
+                />
+                <Carousel.Caption>
+                  <h5>High-Quality Rubber Granules</h5>
+                  <p>Recycled from tyres, these rubber granules are suitable for various applications including sports surfaces, playgrounds, and insulation.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src={rg2}
+                  alt="Rubber Granules 2"
+                  style={{ height: "500px", objectFit: "cover" }}
+                />
+                <Carousel.Caption>
+                  <h5>Recycled Rubber for Playgrounds</h5>
+                  <p>Our rubber granules help in creating safe and durable playground surfaces that minimize impact and reduce injuries.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src={rg3}
+                  alt="Rubber Granules 3"
+                  style={{ height: "500px", objectFit: "cover" }}
+                />
+                <Carousel.Caption>
+                  <h5>Soundproofing Applications</h5>
+                  <p>Recycled rubber granules are used in noise-reducing insulation materials for buildings and transportation areas.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src={rg4}
+                  alt="Rubber Granules 4"
+                  style={{ height: "500px", objectFit: "cover" }}
+                />
+                <Carousel.Caption>
+                  <h5>Enhancing Sports Surfaces</h5>
+                  <p>Rubber granules are used to improve the performance of synthetic sports surfaces, making them more durable and comfortable.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+          </Col>
+
+          {/* Content on the Right */}
+          <Col md={6} className="text-left">
+            <h1>Rubber Granules</h1>
+            <p>We can supply Rubber Granules in different sizes ranging from 0-2mm and 2-6mm for various applications like:</p>
             <ul>
               <li><strong>Athletics Tracks</strong><br />
-                Rubber granules are mixed with polyurethane binder and then painted to produce running surfaces. The use of recycled rubber provides assistance with impact absorption, increase in performance and injury reduction.
+                Rubber granules mixed with polyurethane binder create resilient running surfaces that offer shock absorption, increased performance, and injury reduction.
               </li>
               <li><strong>Building Insulation</strong><br />
-                Mixed with a polyurethane binder, recycled rubber granules are rolled into noise-reducing insulation. These rubber matting insulations are especially used in units and apartments, under flooring, and in walls for reducing and isolating noise. The use of a waterproof flexible binder also provides protection from the elements.
+                Mixed with polyurethane binder, recycled rubber granules provide noise-reducing insulation for walls and flooring, helping isolate sound and reduce energy costs.
               </li>
               <li><strong>Playground Surfaces</strong><br />
-                Recycled rubber is used in Play Safe surfaces, such as children’s playgrounds, to lower the force of impact and reduce injuries. These durable and low-maintenance surfaces are also porous, allowing them to perform even in the harshest South African weather climate.
+                Recycled rubber is used in playgrounds to minimize injury risk. These surfaces are durable, low-maintenance, and perform well in extreme weather conditions.
               </li>
               <li><strong>Brake Shoes</strong><br />
-                Granulate Rubber crumb is used in asbestos-free brake shoes. The rubber component reduces noise and improves wear. The use of heat-resistant rubber instead of asbestos-based materials is a developing technology in South Africa. As well as lowering noise and improving wear, this product also minimizes dust output to a degree to enhance vehicle appearance.
+                Granulate rubber is used in the manufacture of brake shoes, reducing noise and improving wear resistance. It's also a safer and more eco-friendly alternative to asbestos-based materials.
               </li>
               <li><strong>Rubber Mats</strong><br />
-                A variety of matting products are made from recycled rubber, for both internal and external use, in both commercial and domestic use. These include non-slip doormats, marine surfaces, and mats for workshops and kitchens. The mats are hard-wearing, weather-resistant, and can be washed easily.
+                Rubber mats are produced for a variety of uses including non-slip doormats, marine surfaces, and workshop mats. These mats are hard-wearing, weather-resistant, and easy to clean.
               </li>
               <li><strong>Tarred Roads</strong><br />
-                Recycled rubber granules are added to paint coating, providing grip in areas that may become slippery in treacherous marine conditions. Covered areas include walkways of boats or strips that are applied to the edges of stairs.
+                Recycled rubber granules are mixed with paint to provide added grip on tarred surfaces, improving safety in slippery areas like walkways and stairs.
               </li>
-              <li><strong>New Tyre</strong><br />
-                Added to passenger and forklift tyres (solid), recycled rubber is mixed with uncured rubber as a predictable filling compound prior to baking. This reduces the use of new materials and lowers the cost of manufacture.
+              <li><strong>New Tyres</strong><br />
+                Recycled rubber is used in the manufacture of passenger and forklift tyres, reducing the need for new materials and cutting down on production costs.
               </li>
               <li><strong>Sport Surfaces</strong><br />
-                Recycled rubber is used under synthetic grass for softness, particularly useful for sporting grounds. The grass is often injected directly into the recycled rubber and a polyurethane binder. Also in combination with silica sand, a layer of rubber granulate is used to hold the synthetic grass strands upright when played onto the pitch.
+                Rubber granules are used beneath synthetic grass on sports fields to provide cushioning and improve the durability of the turf, especially in contact sports.
               </li>
             </ul>
           </Col>
         </Row>
 
-        <Row className="mt-5">
-          <Col md={6} style={{ width: '25%' }}>
-            <Card className="border-0 shadow-sm mb-4">
-              <div className="overflow-hidden" style={{ height: '250px' }}>
-                <Card.Img variant="top" src={rg1} alt="Rubber Granules 1" className="h-100 w-100 object-fit-cover" />
-              </div>
-            </Card>
-          </Col>
-          <Col md={6} style={{ width: '25%' }}>
-            <Card className="border-0 shadow-sm mb-4">
-              <div className="overflow-hidden" style={{ height: '250px' }}>
-                <Card.Img variant="top" src={rg2} alt="Rubber Granules 2" className="h-100 w-100 object-fit-cover" />
-              </div>
-            </Card>
-          </Col>
-        </Row>
+        <Row className="justify-content-center mt-5">
+                  <Col md={4} className="text-center">
+                    <Link to="/contact" className="btn btn-primary w-100">
+                      Enquire Us
+                    </Link>
+                  </Col>
+                </Row>
 
-        <Row>
-          <Col md={6} style={{ width: '25%' }}>
-            <Card className="border-0 shadow-sm mb-4">
-              <div className="overflow-hidden" style={{ height: '250px' }}>
-                <Card.Img variant="top" src={rg3} alt="Rubber Granules 3" className="h-100 w-100 object-fit-cover" />
-              </div>
-            </Card>
-          </Col>
-          <Col md={6} style={{ width: '25%' }}>
-            <Card className="border-0 shadow-sm mb-4">
-              <div className="overflow-hidden" style={{ height: '250px' }}>
-                <Card.Img variant="top" src={rg4} alt="Rubber Granules 4" className="h-100 w-100 object-fit-cover" />
-              </div>
-            </Card>
-          </Col>
-        </Row>
-
+        {/* Navigation Section */}
         <Row className="align-items-center justify-content-between mt-5">
           {/* Previous Section */}
           <Col md={5} className="text-center">
@@ -123,7 +154,7 @@ function RubberGranules() {
               Next Post<i className="bi bi-arrow-right ms-2"></i>
             </Link>
           </Col>
-        </Row>
+        </Row>
       </Container>
     </>
   );

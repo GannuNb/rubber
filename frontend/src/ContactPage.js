@@ -117,9 +117,9 @@ function ContactPage() {
               <p>
                 For General Queries: info@lavarubberllc.com
                 <br />
-                For Sales: sales@lavarubber.com
+                For Sales: sales@lavarubberllc.com
                 <br />
-                For Transport: transport@lavarubber.com
+               
               </p>
             </div>
           </div>
@@ -127,7 +127,7 @@ function ContactPage() {
       </div>
 
       {/* Contact Form Section */}
-      <h2 className="text-center">Send Your Message To Us</h2>
+      <h2 className="text-center">Enquire Us</h2>
       <form className="contact-form" onSubmit={sendEmail}>
         <div className="form-row">
           <input

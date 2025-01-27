@@ -8,8 +8,8 @@ const About = () => {
       {/* Header Section */}
       <div className="about-header">
         <div className="header-overlay">
-          <h1>LAVARUBBER</h1>
-          <p>HOME &gt; ABOUT LAVARUBBER</p>
+          <h1>LAVA RUBBER</h1>
+          <p>HOME &gt; ABOUT LAVA RUBBER</p>
         </div>
       </div>
 
@@ -22,9 +22,9 @@ const About = () => {
           </div>
           {/* Right Text */}
           <div className="about-text text-center">
-            <h2>Welcome To LAVARUBBER</h2>
+            <h2>Welcome To LAVA RUBBER</h2>
             <p>
-              LAVARUBBER has extensive experience in recycling of Metal Scrap and Waste Tyres into Reusable Products. Lavarubber is a supplier of alternative fuels to Cement Manufacturing and Waste to Energy Plants worldwide. We provide Bulk or Container shipments of various alternative fuels to steel industries globally.
+              LAVA RUBBER has extensive experience in recycling of Metal Scrap and Waste Tyres into Reusable Products. Lava rubber is a supplier of alternative fuels to Cement Manufacturing and Waste to Energy Plants worldwide. We provide Bulk or Container shipments of various alternative fuels to steel industries globally.
             </p>
           </div>
         </div>
@@ -77,7 +77,7 @@ const About = () => {
         <span className="star">★</span>
       </div>
       <p className="feedback-message">
-        "Hi, we have ordered a couple of consignments from LAVARUBBER, and it all went well. Thanks so much."
+        "Hi, we have ordered a couple of consignments from LAVA RUBBER, and it all went well. Thanks so much."
       </p>
       <div className="dots">
         <span className="dot"></span>
@@ -102,7 +102,7 @@ const About = () => {
         <span className="star">★</span>
       </div>
       <p className="feedback-message">
-        "Coordination by RK is very good, and we are very happy to be partnered with LAVARUBBER."
+        "Coordination by RK is very good, and we are very happy to be partnered with LAVA RUBBER."
       </p>
       <div className="dots">
         <span className="dot"></span>
@@ -137,7 +137,7 @@ const About = () => {
         <span className="dot"></span>
       </div>
       <div className="feedback-provider">
-        <h4>Thank you, Lavarubber</h4>
+        <h4>Thank you, Vikah Ecotech</h4>
       </div>
     </div>
   </div>
