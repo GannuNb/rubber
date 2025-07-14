@@ -3,7 +3,7 @@ import "./ContactPage.css";
 import icon1 from "./images/icon-51.jpg";
 import icon2 from "./images/icon-52.jpg";
 import icon3 from "./images/icon-50.jpg";
-import emailjs from "emailjs-com"; // Import EmailJS
+import emailjs from "emailjs-com"; 
 
 function ContactPage() {
   const [formData, setFormData] = useState({
@@ -16,7 +16,7 @@ function ContactPage() {
 
   const [status, setStatus] = useState("");
 
-  // Handle input changes
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -25,15 +25,15 @@ function ContactPage() {
     });
   };
 
-  // Send email function
+ 
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs
       .send(
         "service_ptts9gd", 
-        // Your EmailJS Service ID
-        "template_wymsr1x", // Correct Template ID
+        
+        "template_wymsr1x", 
         {
           firstName: formData.firstName,
           lastName: formData.lastName,
@@ -41,7 +41,7 @@ function ContactPage() {
           phone: formData.phone,
           message: formData.message,
         },
-        "qZKYs5oMQDM7P0V0-" // Your EmailJS User ID
+        "qZKYs5oMQDM7P0V0-" 
       )
       .then(
         (result) => {
@@ -54,7 +54,7 @@ function ContactPage() {
         }
       );
 
-    // Reset form after sending
+   
     setFormData({
       firstName: "",
       lastName: "",
@@ -64,9 +64,10 @@ function ContactPage() {
     });
   };
 
+  
   return (
     <div className="contact-page">
-      {/* Header Section */}
+      
       <div
         className="contact-header"
         style={{
@@ -80,7 +81,7 @@ function ContactPage() {
         <p>HOME &gt; CONTACT US</p>
       </div>
 
-      {/* Contact Information Section */}
+     
       <div className="contact-info">
         <div className="info-box">
           <div className="icon-text">
@@ -126,7 +127,7 @@ function ContactPage() {
         </div>
       </div>
 
-      {/* Contact Form Section */}
+      
       <h2 className="text-center">Enquire Us</h2>
       <form className="contact-form" onSubmit={sendEmail}>
         <div className="form-row">
@@ -180,7 +181,7 @@ function ContactPage() {
         </button>
       </form>
 
-      {/* Status Message */}
+      
       {status && <p className="status-message">{status}</p>}
     </div>
   );
