@@ -20,6 +20,9 @@ import Rubbercrumb from './Rubbercrumb.js';
 import RubberGranules from './RubberGranules.js';
 import Baledtyres from './Baledtyres.js';
 import Tdf from './Tdf.js';
+import Login from "./Login.js"
+import Signup from "./Signup.js"
+import Supplier from './Supplier.js';
 
 function App() {
   return (
@@ -27,6 +30,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/signup' element={<Signup/>} />
+        <Route path='/supplier' element={<Supplier/>} />
         <Route path='/ferrousmetal' element={<Ferrousmetal/>} />
         <Route path='/stainless' element={<Stainless/>} />
         <Route path='/hms' element={<Hms/>} />

@@ -93,6 +93,20 @@
 }
 @media (min-width: 1000px) and (max-width: 1500px) {
     .navbar {
-      height: 110px;
+      height: 100px;
     }
+}
+
+/* Button style adjustments */
+.btn-sm {
+  padding: 0.25rem 0.6rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
+
+/* Adjust margin for login/logout button */
+.navbar-nav .nav-item .btn {
+  min-width: 70px;
+  font-weight: 600;
 }
