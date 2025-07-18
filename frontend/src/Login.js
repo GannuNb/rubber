@@ -9,32 +9,36 @@ function Login() {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post(
-      
-        `${process.env.REACT_APP_API_URL}/api/auth/login`,
-        formData
-      );
-      console.log('Response data:', res.data);
-      alert(res.data.message);
-      if (res.data.token) {
-        console.log('Saving token:', res.data.token);
-        localStorage.setItem('token', res.data.token);
-        // Optionally, store user info if available
-        if (res.data.user) {
-          localStorage.setItem('user', JSON.stringify(res.data.user));
-        }
-        navigate('/');
-      } else {
-        alert('Token not received');
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}/api/auth/login`,
+      formData
+    );
+    console.log('Response data:', res.data);
+    alert(res.data.message);
+    if (res.data.token) {
+      console.log('Saving token:', res.data.token);
+      localStorage.setItem('token', res.data.token);
+      if (res.data.user) {
+        localStorage.setItem('user', JSON.stringify(res.data.user));
       }
-    } catch (err) {
-      console.error('Login error:', err);
-      alert(err.response?.data?.message || 'Login failed');
+
+      // Navigate and then refresh
+      navigate('/', { replace: true });
+      setTimeout(() => {
+        window.location.reload();
+      }, 100); // Delay to ensure navigation completes
+    } else {
+      alert('Token not received');
     }
-  };
+  } catch (err) {
+    console.error('Login error:', err);
+    alert(err.response?.data?.message || 'Login failed');
+  }
+};
+
 
   return (
     <div className="container mt-5" style={{ maxWidth: '400px' }}>

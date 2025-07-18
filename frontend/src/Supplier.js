@@ -132,7 +132,7 @@ function SupplierApp() {
           "",
           "",
           "",
-          "",
+          "", 
           `$${r.amount}`,
           `$${r.remainingBalanceAfter}`,
           `$${r.totalPaidAfter}`,
