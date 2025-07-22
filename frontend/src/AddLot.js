@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable'; // ✅ import as variableimport './AddLot.css';
+import autoTable from 'jspdf-autotable';
 import './AddLot.css';
 
 const AddLot = () => {

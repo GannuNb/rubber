@@ -52,7 +52,7 @@ const LotDetails = () => {
             containerNo: item.containerNo,
             sealNo: item.sealNo,
             material: item.material,
-            quantity: quantityInTons.toFixed(2),
+            quantity: quantityInTons,
             pricePerTon: price,
             containerAmount,
             amountAdded: '',
