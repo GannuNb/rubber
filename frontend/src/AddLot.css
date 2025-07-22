@@ -88,4 +88,21 @@
     flex-direction: column;
   }
 }
+/* Add borders to all tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+table th,
+table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+table th {
+  background-color: #f5f5f5;
+}
 
