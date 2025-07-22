@@ -1,0 +1,47 @@
+/* src/Home.css */
+.home-container {
+  height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.home-content {
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffffee;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.home-content h1 {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+}
+
+button.btn {
+  min-width: 120px;
+  font-weight: 600;
+  margin: 0.25rem;
+}
+
+@media (max-width: 576px) {
+  .home-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .d-sm-flex {
+    flex-direction: column !important;
+  }
+}

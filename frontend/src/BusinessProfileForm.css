@@ -1,0 +1,75 @@
+/* src/BusinessProfileForm.css */
+
+.form-container {
+  max-width: 720px;
+  margin: 3rem auto;
+  padding: 2rem 2.5rem;
+  background: #ffffffdd;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-container h2 {
+  text-align: center;
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.form-row input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px #007bff33;
+  outline: none;
+}
+
+button[type="submit"] {
+  padding: 0.9rem;
+  background-color: #28a745;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .form-container {
+    padding: 1.5rem 1rem;
+    margin: 1rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-row input {
+    width: 100%;
+  }
+}
