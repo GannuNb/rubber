@@ -4,6 +4,7 @@ const cors = require('cors');
 require('dotenv').config(); // Load environment variables from .env
 
 const supplierRoutes = require('./routes/supplierRoutes');
+const buyerRoutes = require('./routes/buyerRoutes');
 const lotRoutes = require('./routes/lotRoutes'); // Routes for lots
 const authRoutes = require('./routes/authRoutes');
 const app = express(); // Initialize express app
@@ -14,6 +15,7 @@ app.use(express.json());       // Parse incoming JSON payloads
 
 // Routes
 app.use('/api/suppliers', supplierRoutes); // All supplier routes under /api/suppliers
+app.use('/api/buyers', buyerRoutes); // All buyer routes under /api/buyers
 app.use('/api/lots', lotRoutes); 
 app.use('/api/auth', authRoutes);          // All lot-related routes under /api/lots
 

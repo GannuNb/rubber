@@ -6,6 +6,7 @@ import "./Login.css";
 import Swal from 'sweetalert2'; // ✅ ADD THIS
 import { showCompactLoginSuccess } from './showSuccessModal';
 
+
 const BusinessProfileForm = () => {
   const navigate = useNavigate();
 
@@ -24,24 +25,25 @@ const BusinessProfileForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/suppliers/add`, formData);
-      
-      setFormData({
-        name: '',
-        companyName: '',
-        contact: '',
-        email: '',
-        address: '',
-        website: '',
-        gst: '',
-        vat: ''
-      });
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    await axios.post(`${process.env.REACT_APP_API_URL}/api/buyers/add`, formData);
 
-      // ✅ Show alert first
-    showCompactLoginSuccess('Supplier Profile Created', 'Business profile added successfully');
+    // Clear the form
+    setFormData({
+      name: '',
+      companyName: '',
+      contact: '',
+      email: '',
+      address: '',
+      website: '',
+      gst: '',
+      vat: ''
+    });
+
+    // ✅ Custom SweetAlert2 alert with reused styles
+    showCompactLoginSuccess('Buyer Profile Created', 'Business profile added successfully');
 
     // ✅ Navigate after modal closes
     setTimeout(() => {
@@ -56,6 +58,7 @@ const BusinessProfileForm = () => {
     });
   }
 };
+
 
   return (
     <div className="form-container">
@@ -80,7 +83,7 @@ const BusinessProfileForm = () => {
           <input type="text" name="gst" placeholder="GST Number/VAT" value={formData.gst} onChange={handleChange} />
         </div>
 
-        <button type="submit">Add Supplier</button>
+        <button type="submit">Add Buyer</button>
       </form>
     </div>
   );

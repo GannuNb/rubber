@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import "./Login.css";
+import { showCompactLoginSuccess } from './showSuccessModal';
 
 function Login() {
   const navigate = useNavigate();
@@ -16,26 +19,29 @@ const handleSubmit = async (e) => {
       `${process.env.REACT_APP_API_URL}/api/auth/login`,
       formData
     );
-    console.log('Response data:', res.data);
-    alert(res.data.message);
+
     if (res.data.token) {
-      console.log('Saving token:', res.data.token);
       localStorage.setItem('token', res.data.token);
       if (res.data.user) {
         localStorage.setItem('user', JSON.stringify(res.data.user));
       }
 
-      // Navigate and then refresh
-      navigate('/', { replace: true });
+      // ✅ Custom alert: show "Welcome, Mounika!" with message "Login Successful"
+      showCompactLoginSuccess('Welcome,Login Successful');
+
       setTimeout(() => {
-        window.location.reload();
-      }, 100); // Delay to ensure navigation completes
+        navigate('/', { replace: true });
+        setTimeout(() => window.location.reload(), 100);
+      }, 2500);
     } else {
-      alert('Token not received');
+      Swal.fire({ title: 'Oops!', text: 'Token not received.', icon: 'warning' });
     }
   } catch (err) {
-    console.error('Login error:', err);
-    alert(err.response?.data?.message || 'Login failed');
+    Swal.fire({
+      title: 'Login Failed',
+      text: err.response?.data?.message || 'Something went wrong!',
+      icon: 'error',
+    });
   }
 };
 

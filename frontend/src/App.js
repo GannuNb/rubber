@@ -26,6 +26,10 @@ import BusinessProfileForm from './BusinessProfileForm';
 import AddLot from './AddLot';
 import LotDetails from './LotDetails'; 
 import Dashboard from './Dashboard.js';
+import Dashboard1 from './Dashboard1.js';
+import BuyerBusinessProfile from "./BuyerBusinessProfile.js";
+import AddLotBuyer from "./AddLotBuyer.js";
+import showSuccessModal from "./showSuccessModal.js";
 
 function App() {
   return (
@@ -54,7 +58,12 @@ function App() {
         <Route path='/rubbergranules' element={<RubberGranules/>} />
         <Route path='/baledtyres' element={<Baledtyres/>} />
         <Route path='/tdf' element={<Tdf/>} />
-            
+
+        <Route path='/dashboard1' element={<Dashboard1/>} />
+        <Route path='/buyerbusinessprofile' element={<BuyerBusinessProfile/>} />
+        <Route path='/addlotbuyer' element={<AddLotBuyer/>} />
+        <Route path='/showSuccessModal' element={<showSuccessModal/>} />
+
       </Routes>
       <Footer />
       

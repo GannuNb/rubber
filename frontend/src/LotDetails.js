@@ -4,6 +4,10 @@ import axios from 'axios';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import './LotDetails.css';
+import lavalogo from './images/lavalogo.png'; 
+import "./Login.css";
+import Swal from 'sweetalert2'; // ✅ ADD THIS
+import { showCompactLoginSuccess } from './showSuccessModal';
 
 const LotDetails = () => {
   const location = useLocation();
@@ -125,8 +129,8 @@ const LotDetails = () => {
   const handleAddDetails = async () => {
     const { containerNo, sealNo, material, quantity } = form;
     if (!containerNo || !sealNo || !material || !quantity) {
-      alert("Please fill all detail fields");
-      return;
+                  showCompactLoginSuccess('Please fill all detail fields');
+            return;
     }
 
     try {
@@ -158,13 +162,25 @@ const LotDetails = () => {
     }
   };
 
-  const handleDownloadPDF = () => {
-    const doc = new jsPDF();
-    doc.setFontSize(14);
-    doc.text(`Lot Details - ${companyName} / ${lotNumber}`, 14, 10);
+const handleDownloadPDF = () => {
+  const doc = new jsPDF();
+
+  const img = new Image();
+  img.src = lavalogo;
+
+  img.onload = () => {
+    // Add logo on the left
+    doc.addImage(img, 'PNG', 10, 5, 30, 15);
+
+    // Title (centered)
+    doc.setFontSize(16);
+    doc.text(`${companyName}`, 105, 12, { align: 'center' });
+
+    doc.setFontSize(12);
+    doc.text(`Lot Details -   ${lotNumber}`, 105, 20, { align: 'center' });
 
     autoTable(doc, {
-      startY: 15,
+      startY: 28,
       head: [[
         '#', 'Date', 'Type', 'Container No', 'Seal No', 'Material',
         'Qty', 'Price/Ton', 'Container Amount', 'Amount Added', 'Total Paid', 'Rem. Balance'
@@ -205,8 +221,18 @@ const LotDetails = () => {
       }
     });
 
+    // Final Balance
+    const lastBalance = transactions[transactions.length - 1]?.remainingBalance || '';
+    const y = doc.lastAutoTable.finalY + 10;
+
+    doc.setFontSize(12);
+    doc.text('Final Balance Summary:', 14, y);
+    doc.setFontSize(11);
+    doc.text(`Amount Left: ${lastBalance}`, 14, y + 8);
+
     doc.save(`Lot_${companyName}_${lotNumber}.pdf`);
   };
+};
 
 
   return (
@@ -307,7 +333,7 @@ const LotDetails = () => {
         <thead style={{ background: '#f5f5f5' }}>
           <tr>
             <th>#</th><th>Date</th><th>Type</th><th>Container No</th><th>Seal No</th><th>Material</th>
-            <th>Qty(MT)</th><th>Price/Ton</th><th>Container Amount</th><th>Amount Added</th><th>Total Paid</th><th>Rem. Balance</th>
+            <th>Qty(MT)</th><th>Price/Ton</th><th>Container Amount</th><th>Amount  Added</th><th>Total Paid</th><th>Rem. Balance</th>
           </tr>
         </thead>
         <tbody>

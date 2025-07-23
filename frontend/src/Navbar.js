@@ -88,6 +88,16 @@ const Navbar = () => {
                 <b>Contact Us</b>
               </Link>
             </li>
+            <li className="nav-item mx-2">
+              <Link className="nav-link nav-hover" to="/dashboard1" onClick={() => setIsNavbarCollapsed(true)}>
+                <b>Buyer</b>
+              </Link>
+            </li>
+            <li className="nav-item mx-2">
+              <Link className="nav-link nav-hover" to="/dashboard" onClick={() => setIsNavbarCollapsed(true)}>
+                <b>Supplier</b>
+              </Link>
+            </li>
 
             {/* Login/Logout Button */}
             <li className="nav-item mx-2">

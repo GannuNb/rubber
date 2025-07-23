@@ -9,14 +9,14 @@ const Dashboard = () => {
   return (
     <div className="container-fluid home-container d-flex align-items-center justify-content-center text-center">
       <div className="home-content p-4 rounded shadow-lg bg-white">
-        <h1 className="mb-4 text-primary">Welcome to Supplier Dashboard</h1>
+        <h1 className="mb-4 text-primary">Welcome to Buyer Dashboard</h1>
 
         <div className="d-grid gap-3 d-sm-flex justify-content-sm-center">
-          <button className="btn btn-success" onClick={() => navigate('/add-supplier')}>
-            Add Supplier
+          <button className="btn btn-success" onClick={() => navigate('/buyerbusinessprofile')}>
+            Add Buyer
           </button>
 
-          <button className="btn btn-info" onClick={() => navigate('/add-lot')}>
+          <button className="btn btn-info" onClick={() => navigate('/addlotbuyer')}>
             Manage Lots: Add or View
           </button>
         </div>
