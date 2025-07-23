@@ -169,8 +169,12 @@ const handleDownloadPDF = () => {
   img.src = lavalogo;
 
   img.onload = () => {
-    // Add logo on the left
-    doc.addImage(img, 'PNG', 10, 5, 30, 15);
+    // Increase logo size proportionally
+    const logoWidth = 50;   // increased from 30 to 50
+    const logoHeight = 20;  // increased from 15 to 20
+
+    // Add larger logo on the left
+    doc.addImage(img, 'PNG', 10, 5, logoWidth, logoHeight);
 
     // Title (centered)
     doc.setFontSize(16);

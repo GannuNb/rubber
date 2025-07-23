@@ -60,8 +60,8 @@ const AddLot = () => {
   const handleAddLot = async (e) => {
     e.preventDefault();
     if (!form.companyName || !form.lotNumber || !form.price) {
-                  showCompactLoginSuccess('Please fill in all fields');
-            return;
+      showCompactLoginSuccess('Please fill in all fields');
+      return;
     }
 
     try {
@@ -71,7 +71,7 @@ const AddLot = () => {
         price: parseFloat(form.price)
       });
 
-            showCompactLoginSuccess('Lot added successfully');
+      showCompactLoginSuccess('Lot added successfully');
 
       const updatedLots = await axios.get(`${process.env.REACT_APP_API_URL}/api/lots/all`);
       setAllLots(updatedLots.data);
@@ -84,7 +84,7 @@ const AddLot = () => {
       });
 
     } catch (err) {
-            showCompactLoginSuccess('Error adding lot');
+      showCompactLoginSuccess('Error adding lot');
     }
   };
 
@@ -107,10 +107,12 @@ const AddLot = () => {
     let y = 15;
 
     const addHeader = () => {
-      doc.addImage(logo, 'PNG', 10, 5, 30, 15); // Adjust size/position as needed
+      const logoWidth = 50; // wider
+      const logoHeight = 20; // taller proportionally
+      doc.addImage(logo, 'PNG', 10, 5, logoWidth, logoHeight);
       doc.setFontSize(14);
       doc.text(form.companyName, 105, 12, { align: 'center' });
-      y = 25; // Push content below header
+      y = 25; // Adjust if needed based on logo height
     };
 
     try {
@@ -288,7 +290,7 @@ const AddLot = () => {
       doc.save(`Lot_${form.companyName}_Detailed.pdf`);
     } catch (error) {
       console.error("Error generating detailed PDF:", error);
-            showCompactLoginSuccess('Failed to generate PDF');
+      showCompactLoginSuccess('Failed to generate PDF');
     }
   };
 
