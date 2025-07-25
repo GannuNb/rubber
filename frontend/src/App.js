@@ -58,7 +58,6 @@ function App() {
         <Route path='/rubbergranules' element={<RubberGranules/>} />
         <Route path='/baledtyres' element={<Baledtyres/>} />
         <Route path='/tdf' element={<Tdf/>} />
-
         <Route path='/dashboard1' element={<Dashboard1/>} />
         <Route path='/buyerbusinessprofile' element={<BuyerBusinessProfile/>} />
         <Route path='/addlotbuyer' element={<AddLotBuyer/>} />

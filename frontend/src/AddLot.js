@@ -23,17 +23,33 @@ const AddLot = () => {
   const [isExistingLotSelected, setIsExistingLotSelected] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const suppliers = await axios.get(`${process.env.REACT_APP_API_URL}/api/suppliers/all`);
-      setCompanyNames(suppliers.data.map(s => s.companyName));
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const token = localStorage.getItem('token');  // get token from storage
+      const suppliersResponse = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/suppliers/my-profile`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,  // <-- include token here
+          },
+        }
+      );
 
-      const lots = await axios.get(`${process.env.REACT_APP_API_URL}/api/lots/all`);
-      setAllLots(lots.data);
-    };
+      setCompanyNames([suppliersResponse.data.companyName]); // data is one profile, not array
 
-    fetchData();
-  }, []);
+      const lotsResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/lots/all`);
+      setAllLots(lotsResponse.data);
+    } catch (error) {
+      console.error('Failed to fetch supplier profile:', error);
+      setCompanyNames([]);  // reset on failure
+      setAllLots([]);
+    }
+  };
+
+  fetchData();
+}, []);
+
 
 
   useEffect(() => {

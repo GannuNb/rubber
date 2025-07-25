@@ -61,15 +61,25 @@ router.get('/details/all', async (req, res) => {
 // =============== LOT AMOUNTS ===================
 
 // Add amount entry (payment)
+// routes/lots.js
 router.post('/amounts/add', async (req, res) => {
   try {
-    const amount = new LotAmount(req.body);
-    await amount.save();
-    res.status(201).json(amount);
+    const { companyName, lotNumber, amount, date } = req.body;
+
+    const newAmount = new LotAmount({
+      companyName,
+      lotNumber,
+      amount,
+      date: new Date(date), // Store selected date
+    });
+
+    await newAmount.save();
+    res.status(201).json(newAmount);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 });
+
 
 // Get all amount entries
 router.get('/amounts/all', async (req, res) => {

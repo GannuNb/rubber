@@ -7,9 +7,10 @@ const lotDetailSchema = new mongoose.Schema({
   sealNo: String,
   material: String,
   quantity: String,
-  price: Number
+  price: Number,
+  date: Date  // ⬅️ Add this line
 }, {
-  timestamps: true  // Adds createdAt and updatedAt
+  timestamps: true
 });
 
 module.exports = mongoose.model('LotDetail', lotDetailSchema);
