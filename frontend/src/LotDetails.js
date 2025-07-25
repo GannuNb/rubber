@@ -28,6 +28,8 @@ const LotDetails = () => {
   ); // YYYY-MM-DD
 
   const [transactions, setTransactions] = useState([]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   useEffect(() => {
     if (companyName && lotNumber) {
@@ -307,37 +309,53 @@ const LotDetails = () => {
           marginBottom: "15px",
         }}
       >
-        {[
-          { key: "containerNo", label: "Container No" },
-          { key: "sealNo", label: "Seal No" },
-          { key: "material", label: "Material" },
-          { key: "quantity", label: "Quantity (kg)" },
-          { key: "date", label: "Date" }, // ⬅️ New Date field
-        ].map(({ key, label }) => (
-          <div
-            key={key}
-            style={{
-              flex: "1 1 45%",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <label
-              htmlFor={key}
-              style={{ marginBottom: "5px", fontWeight: "bold" }}
-            >
-              {label}
-            </label>
-            <input
-              id={key}
-              name={key}
-              type={key === "date" ? "date" : "text"} // Use type="date" for calendar
-              value={form[key]}
-              onChange={handleFormChange}
-              style={{ padding: "8px" }}
-            />
-          </div>
-        ))}
+        {/* Row 1: Container No & Seal No */}
+        <div style={{ display: "flex", gap: "15px", width: "100%", marginBottom: "10px" }}>
+          {[
+            { key: "containerNo", label: "Container No" },
+            { key: "sealNo", label: "Seal No" },
+          ].map(({ key, label }) => (
+            <div key={key} style={{ flex: "1", display: "flex", flexDirection: "column" }}>
+              <label htmlFor={key} style={{ marginBottom: "5px", fontWeight: "bold" }}>
+                {label}
+              </label>
+              <input
+                id={key}
+                name={key}
+                type="text"
+                value={form[key]}
+                onChange={handleFormChange}
+                style={{ padding: "8px" }}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Row 2: Material, Quantity, and Date */}
+        <div style={{ display: "flex", gap: "15px", width: "100%", marginBottom: "10px" }}>
+          {[
+            { key: "material", label: "Material", type: "text" },
+            { key: "quantity", label: "Quantity (kg)", type: "number" },
+            { key: "date", label: "Date", type: "date" },
+          ].map(({ key, label, type }) => (
+            <div key={key} style={{ flex: "1", display: "flex", flexDirection: "column" }}>
+              <label htmlFor={key} style={{ marginBottom: "5px", fontWeight: "bold" }}>
+                {label}
+              </label>
+              <input
+                id={key}
+                name={key}
+                type={type}
+                value={form[key]}
+                onChange={handleFormChange}
+                style={{ padding: "8px" }}
+                {...(key === "quantity" && { min: 0, step: "any" })}
+              />
+            </div>
+          ))}
+
+        </div>
+
 
         <div style={{ flex: "1 1 100%", marginTop: "10px" }}>
           <b>Price/Ton:</b> ${pricePerTon || "0"}
@@ -431,6 +449,55 @@ const LotDetails = () => {
           📄 Download PDF
         </button>
       </div>
+      <div
+        style={{
+          display: "flex",
+          gap: "15px",
+          marginBottom: "20px",
+          alignItems: "center",
+        }}
+      >
+        <label style={{ fontWeight: "bold" }}>Filter by Date:</label>
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          style={{
+            padding: "8px",
+            fontSize: "14px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+          }}
+        />
+        <span>to</span>
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+          style={{
+            padding: "8px",
+            fontSize: "14px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+          }}
+        />
+        <button
+          onClick={() => {
+            setStartDate("");
+            setEndDate("");
+          }}
+          style={{
+            padding: "8px 12px",
+            fontSize: "14px",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            background: "#ccc",
+          }}
+        >
+          Clear
+        </button>
+      </div>
 
       <table border="1" cellPadding="8" cellSpacing="0" width="100%">
         <thead style={{ background: "#f5f5f5" }}>
@@ -457,36 +524,45 @@ const LotDetails = () => {
               </td>
             </tr>
           ) : (
-            transactions.map((tx) => (
-              <tr
-                key={tx.id}
-                style={{
-                  backgroundColor:
-                    tx.type === "Advance"
-                      ? "#fff3cd"
-                      : tx.type === "Amount"
-                      ? "#d4edda"
-                      : "transparent",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                <td>{tx.id}</td>
-                <td>{tx.date}</td>
-                <td>{tx.type}</td>
-                <td>{tx.containerNo}</td>
-                <td>{tx.sealNo}</td>
-                <td>{tx.material}</td>
-                <td>{tx.quantity}</td>
-                <td>{tx.pricePerTon}</td>
-                <td>{tx.containerAmount}</td>
-                <td>{tx.amountAdded}</td>
-                <td>{tx.totalPaid}</td>
-                <td>{tx.remainingBalance}</td>
-              </tr>
-            ))
+            transactions
+              .filter((tx) => {
+                if (!startDate && !endDate) return true;
+                const txDate = new Date(tx.timestamp);
+                const start = startDate ? new Date(startDate) : null;
+                const end = endDate ? new Date(endDate) : null;
+                return (!start || txDate >= start) && (!end || txDate <= end);
+              })
+              .map((tx) => (
+                <tr
+                  key={tx.id}
+                  style={{
+                    backgroundColor:
+                      tx.type === "Advance"
+                        ? "#fff3cd"
+                        : tx.type === "Amount"
+                          ? "#d4edda"
+                          : "transparent",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  <td>{tx.id}</td>
+                  <td>{tx.date}</td>
+                  <td>{tx.type}</td>
+                  <td>{tx.containerNo}</td>
+                  <td>{tx.sealNo}</td>
+                  <td>{tx.material}</td>
+                  <td>{tx.quantity}</td>
+                  <td>{tx.pricePerTon}</td>
+                  <td>{tx.containerAmount}</td>
+                  <td>{tx.amountAdded}</td>
+                  <td>{tx.totalPaid}</td>
+                  <td>{tx.remainingBalance}</td>
+                </tr>
+              ))
           )}
         </tbody>
       </table>
+
     </div>
   );
 };
