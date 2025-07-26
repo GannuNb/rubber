@@ -298,7 +298,7 @@ const LotDetails = () => {
   return (
     <div style={{ padding: "30px" }}>
       <h2>
-        Lot: {companyName} - {lotNumber}
+        Lot: {lotNumber}
       </h2>
 
       <div

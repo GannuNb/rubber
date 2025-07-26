@@ -36,7 +36,9 @@ useEffect(() => {
         }
       );
 
-      setCompanyNames([suppliersResponse.data.companyName]); // data is one profile, not array
+const companyName = suppliersResponse.data.companyName;
+setCompanyNames([companyName]);
+setForm(prev => ({ ...prev, companyName }));
 
       const lotsResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/lots/all`);
       setAllLots(lotsResponse.data);
@@ -51,17 +53,21 @@ useEffect(() => {
 }, []);
 
 
+useEffect(() => {
+  if (!form.companyName || allLots.length === 0) return;
 
-  useEffect(() => {
-    const filtered = allLots.filter(lot => lot.companyName === form.companyName);
-    setCompanyLots(filtered);
-    setForm(prev => ({
-      companyName: form.companyName,
-      lotNumber: '',
-      price: ''
-    }));
-    setIsExistingLotSelected(false);
-  }, [form.companyName]);
+  const filtered = allLots.filter(lot => lot.companyName === form.companyName);
+  setCompanyLots(filtered);
+
+  setForm(prev => ({
+    ...prev,
+    lotNumber: '',
+    price: ''
+  }));
+
+  setIsExistingLotSelected(false);
+}, [form.companyName, allLots]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -319,23 +325,6 @@ useEffect(() => {
       <h2>Lot Management</h2>
 
       <form className="lot-form">
-        {/* Company Dropdown */}
-        <div className="form-group">
-          <label>Company</label>
-          <select
-            name="companyName"
-            value={form.companyName}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Company</option>
-            {companyNames.map((name, i) => (
-              <option key={i} value={name}>{name}</option>
-            ))}
-          </select>
-        </div>
-
-        {/* Show only after company is selected */}
         {form.companyName && (
           <>
             {/* Existing Lot Dropdown */}
@@ -425,3 +414,4 @@ useEffect(() => {
 };
 
 export default AddLot;
+
