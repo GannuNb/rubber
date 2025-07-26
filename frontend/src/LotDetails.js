@@ -431,7 +431,7 @@ const LotDetails = () => {
             cursor: "pointer",
           }}
         >
-          Add Amount
+          Add Advance/Amount
         </button>
 
         <button
