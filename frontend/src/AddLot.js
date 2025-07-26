@@ -23,50 +23,50 @@ const AddLot = () => {
   const [isExistingLotSelected, setIsExistingLotSelected] = useState(false);
   const navigate = useNavigate();
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const token = localStorage.getItem('token');  // get token from storage
-      const suppliersResponse = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/suppliers/my-profile`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,  // <-- include token here
-          },
-        }
-      );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');  // get token from storage
+        const suppliersResponse = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/suppliers/my-profile`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,  // <-- include token here
+            },
+          }
+        );
 
-const companyName = suppliersResponse.data.companyName;
-setCompanyNames([companyName]);
-setForm(prev => ({ ...prev, companyName }));
+        const companyName = suppliersResponse.data.companyName;
+        setCompanyNames([companyName]);
+        setForm(prev => ({ ...prev, companyName }));
 
-      const lotsResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/lots/all`);
-      setAllLots(lotsResponse.data);
-    } catch (error) {
-      console.error('Failed to fetch supplier profile:', error);
-      setCompanyNames([]);  // reset on failure
-      setAllLots([]);
-    }
-  };
+        const lotsResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/lots/all`);
+        setAllLots(lotsResponse.data);
+      } catch (error) {
+        console.error('Failed to fetch supplier profile:', error);
+        setCompanyNames([]);  // reset on failure
+        setAllLots([]);
+      }
+    };
 
-  fetchData();
-}, []);
+    fetchData();
+  }, []);
 
 
-useEffect(() => {
-  if (!form.companyName || allLots.length === 0) return;
+  useEffect(() => {
+    if (!form.companyName || allLots.length === 0) return;
 
-  const filtered = allLots.filter(lot => lot.companyName === form.companyName);
-  setCompanyLots(filtered);
+    const filtered = allLots.filter(lot => lot.companyName === form.companyName);
+    setCompanyLots(filtered);
 
-  setForm(prev => ({
-    ...prev,
-    lotNumber: '',
-    price: ''
-  }));
+    setForm(prev => ({
+      ...prev,
+      lotNumber: '',
+      price: ''
+    }));
 
-  setIsExistingLotSelected(false);
-}, [form.companyName, allLots]);
+    setIsExistingLotSelected(false);
+  }, [form.companyName, allLots]);
 
 
   const handleChange = (e) => {

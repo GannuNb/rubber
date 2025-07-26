@@ -13,6 +13,7 @@ const AddLot = () => {
     const [companyNames, setCompanyNames] = useState([]);
     const [allLots, setAllLots] = useState([]);
     const [companyLots, setCompanyLots] = useState([]);
+const [companyName, setCompanyName] = useState('');
 
     const [form, setForm] = useState({
         companyName: '',
@@ -37,8 +38,10 @@ useEffect(() => {
         }
       );
 
-      const companyName = profileRes.data.companyName;
-      setCompanyNames([companyName]); // Only one company for logged-in user
+const companyName = profileRes.data.companyName;
+setCompanyNames([companyName]); // Optional, if needed elsewhere
+setForm(prev => ({ ...prev, companyName })); // Set companyName in form
+
 
       const lotsRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/lots/all`);
       setAllLots(lotsRes.data);
@@ -49,19 +52,21 @@ useEffect(() => {
 
   fetchData();
 }, []);
+  useEffect(() => {
+    if (!form.companyName || allLots.length === 0) return;
 
+    const filtered = allLots.filter(lot => lot.companyName === form.companyName);
+    setCompanyLots(filtered);
 
+    setForm(prev => ({
+      ...prev,
+      lotNumber: '',
+      price: ''
+    }));
 
-    useEffect(() => {
-        const filtered = allLots.filter(lot => lot.companyName === form.companyName);
-        setCompanyLots(filtered);
-        setForm(prev => ({
-            companyName: form.companyName,
-            lotNumber: '',
-            price: ''
-        }));
-        setIsExistingLotSelected(false);
-    }, [form.companyName]);
+    setIsExistingLotSelected(false);
+  }, [form.companyName, allLots]);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -323,21 +328,7 @@ useEffect(() => {
             <h2>Lot Management</h2>
 
             <form className="lot-form">
-                {/* Company Dropdown */}
-                <div className="form-group">
-                    <label>Company</label>
-                    <select
-                        name="companyName"
-                        value={form.companyName}
-                        onChange={handleChange}
-                        required
-                    >
-                        <option value="">Select Company</option>
-                        {companyNames.map((name, i) => (
-                            <option key={i} value={name}>{name}</option>
-                        ))}
-                    </select>
-                </div>
+                
 
                 {/* Show only after company is selected */}
                 {form.companyName && (
