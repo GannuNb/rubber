@@ -23,45 +23,49 @@ const AddLot = () => {
   const [isExistingLotSelected, setIsExistingLotSelected] = useState(false);
   const navigate = useNavigate();
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const token = localStorage.getItem('token');  // get token from storage
-      const suppliersResponse = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/suppliers/my-profile`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,  // <-- include token here
-          },
-        }
-      );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');  // get token from storage
+        const suppliersResponse = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/suppliers/my-profile`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,  // <-- include token here
+            },
+          }
+        );
 
-      setCompanyNames([suppliersResponse.data.companyName]); // data is one profile, not array
+        const companyName = suppliersResponse.data.companyName;
+        setCompanyNames([companyName]);
+        setForm(prev => ({ ...prev, companyName }));
 
-      const lotsResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/lots/all`);
-      setAllLots(lotsResponse.data);
-    } catch (error) {
-      console.error('Failed to fetch supplier profile:', error);
-      setCompanyNames([]);  // reset on failure
-      setAllLots([]);
-    }
-  };
+        const lotsResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/lots/all`);
+        setAllLots(lotsResponse.data);
+      } catch (error) {
+        console.error('Failed to fetch supplier profile:', error);
+        setCompanyNames([]);  // reset on failure
+        setAllLots([]);
+      }
+    };
 
-  fetchData();
-}, []);
-
-
+    fetchData();
+  }, []);
 
   useEffect(() => {
+    if (!form.companyName || allLots.length === 0) return;
+
     const filtered = allLots.filter(lot => lot.companyName === form.companyName);
     setCompanyLots(filtered);
+
     setForm(prev => ({
-      companyName: form.companyName,
+      ...prev,
       lotNumber: '',
       price: ''
     }));
+
     setIsExistingLotSelected(false);
-  }, [form.companyName]);
+  }, [form.companyName, allLots]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -115,8 +119,6 @@ useEffect(() => {
       });
     }
   };
-
-
 
   const handleDownloadDetailedPDF = async () => {
     const doc = new jsPDF();
@@ -310,32 +312,11 @@ useEffect(() => {
     }
   };
 
-
-
-
-
   return (
     <div className="add-lot-container">
       <h2>Lot Management</h2>
 
       <form className="lot-form">
-        {/* Company Dropdown */}
-        <div className="form-group">
-          <label>Company</label>
-          <select
-            name="companyName"
-            value={form.companyName}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Company</option>
-            {companyNames.map((name, i) => (
-              <option key={i} value={name}>{name}</option>
-            ))}
-          </select>
-        </div>
-
-        {/* Show only after company is selected */}
         {form.companyName && (
           <>
             {/* Existing Lot Dropdown */}
