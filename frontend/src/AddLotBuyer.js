@@ -13,59 +13,62 @@ const AddLot = () => {
     const [companyNames, setCompanyNames] = useState([]);
     const [allLots, setAllLots] = useState([]);
     const [companyLots, setCompanyLots] = useState([]);
-const [companyName, setCompanyName] = useState('');
+    const [companyName, setCompanyName] = useState('');
 
     const [form, setForm] = useState({
         companyName: '',
         lotNumber: '',
-        price: ''
+        price: '',
+        startDate: '',
+        endDate: ''
     });
+
 
     const [isExistingLotSelected, setIsExistingLotSelected] = useState(false);
     const navigate = useNavigate();
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const token = localStorage.getItem('token');
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const token = localStorage.getItem('token');
 
-      const profileRes = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/buyers/my-profile`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      );
+                const profileRes = await axios.get(
+                    `${process.env.REACT_APP_API_URL}/api/buyers/my-profile`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                );
 
-const companyName = profileRes.data.companyName;
-setCompanyNames([companyName]); // Optional, if needed elsewhere
-setForm(prev => ({ ...prev, companyName })); // Set companyName in form
+                const companyName = profileRes.data.companyName;
+                setCompanyNames([companyName]); // Optional, if needed elsewhere
+                setForm(prev => ({ ...prev, companyName })); // Set companyName in form
 
 
-      const lotsRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/lots/all`);
-      setAllLots(lotsRes.data);
-    } catch (error) {
-      console.error('Failed to fetch profile or lots:', error);
-    }
-  };
+                const lotsRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/lots/all`);
+                setAllLots(lotsRes.data);
+            } catch (error) {
+                console.error('Failed to fetch profile or lots:', error);
+            }
+        };
 
-  fetchData();
-}, []);
-  useEffect(() => {
-    if (!form.companyName || allLots.length === 0) return;
+        fetchData();
+    }, []);
+    useEffect(() => {
+        if (!form.companyName || allLots.length === 0) return;
 
-    const filtered = allLots.filter(lot => lot.companyName === form.companyName);
-    setCompanyLots(filtered);
+        const filtered = allLots.filter(lot => lot.companyName === form.companyName);
+        setCompanyLots(filtered);
 
-    setForm(prev => ({
-      ...prev,
-      lotNumber: '',
-      price: ''
-    }));
+        setForm(prev => ({
+            ...prev,
+            lotNumber: '',
+            price: ''
+        }));
 
-    setIsExistingLotSelected(false);
-  }, [form.companyName, allLots]);
+        setIsExistingLotSelected(false);
+    }, [form.companyName, allLots]);
 
 
     const handleChange = (e) => {
@@ -121,8 +124,8 @@ setForm(prev => ({ ...prev, companyName })); // Set companyName in form
         }
     };
 
-
-
+    const startDate = form.startDate ? new Date(form.startDate) : null;
+    const endDate = form.endDate ? new Date(form.endDate + 'T23:59:59') : null; // include the full end day
 
     const handleDownloadDetailedPDF = async () => {
         const doc = new jsPDF();
@@ -146,17 +149,38 @@ setForm(prev => ({ ...prev, companyName })); // Set companyName in form
             let totalPaid = 0;
 
             addHeader();
+            // Add filter date range to PDF
+            doc.setFontSize(10);
+            if (startDate || endDate) {
+                doc.text(
+                    `Filtered from ${startDate?.toLocaleDateString('en-GB') || 'Start'} to ${endDate?.toLocaleDateString('en-GB') || 'End'}`,
+                    105,
+                    y,
+                    { align: 'center' }
+                );
+                y += 5;
+            }
 
             for (const lot of companyLots) {
                 const { lotNumber, price } = lot;
 
                 const lotDetails = detailsRes.data.filter(d =>
-                    d.companyName === form.companyName && d.lotNumber === lotNumber
+                    d.companyName === form.companyName &&
+                    d.lotNumber === lotNumber &&
+                    (!startDate || new Date(d.createdAt) >= startDate) &&
+                    (!endDate || new Date(d.createdAt) <= endDate)
                 );
 
+
                 const lotAmounts = amountsRes.data
-                    .filter(a => a.companyName === form.companyName && a.lotNumber === lotNumber)
+                    .filter(a =>
+                        a.companyName === form.companyName &&
+                        a.lotNumber === lotNumber &&
+                        (!startDate || new Date(a.createdAt) >= startDate) &&
+                        (!endDate || new Date(a.createdAt) <= endDate)
+                    )
                     .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
 
                 const detailRows = lotDetails.map((item) => {
                     const quantity = parseFloat(item.quantity) / 1000;
@@ -328,7 +352,7 @@ setForm(prev => ({ ...prev, companyName })); // Set companyName in form
             <h2>Lot Management</h2>
 
             <form className="lot-form">
-                
+
 
                 {/* Show only after company is selected */}
                 {form.companyName && (
@@ -356,30 +380,42 @@ setForm(prev => ({ ...prev, companyName })); // Set companyName in form
                             </div>
                         )}
 
+                        <div className="filter-download-container">
+                            <div className="filter-group">
+                                <label htmlFor="startDate">Filter Start Date</label>
+                                <input
+                                    type="date"
+                                    id="startDate"
+                                    value={form.startDate || ''}
+                                    onChange={(e) => setForm(prev => ({ ...prev, startDate: e.target.value }))}
+                                />
+                            </div>
+
+                            <div className="filter-group">
+                                <label htmlFor="endDate">Filter End Date</label>
+                                <input
+                                    type="date"
+                                    id="endDate"
+                                    value={form.endDate || ''}
+                                    onChange={(e) => setForm(prev => ({ ...prev, endDate: e.target.value }))}
+                                />
+                            </div>
+
+                            <div className="download-btn-group">
+                                <button
+                                    className="btn download-btn"
+                                    onClick={handleDownloadDetailedPDF}
+                                >
+                                    📄 Download Detailed PDF (All Lots)
+                                </button>
+                            </div>
+                        </div>
+
+
                         {/* New Lot Inputs */}
                         {!isExistingLotSelected && (
                             <>
-                                {/* PDF Download Button placed above Add Lot */}
-                                {companyLots.length > 0 && (
-                                    <div style={{ marginBottom: '15px' }}>
-                                        <button
-                                            className="btn"
-                                            onClick={handleDownloadDetailedPDF}
-                                            style={{
-                                                backgroundColor: '#ff8800',
-                                                color: 'white',
-                                                padding: '10px 16px',
-                                                border: 'none',
-                                                borderRadius: '6px',
-                                                fontWeight: 'bold',
-                                                boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)',
-                                                cursor: 'pointer'
-                                            }}
-                                        >
-                                            📄 Download Detailed PDF (All Lots)
-                                        </button>
-                                    </div>
-                                )}
+
 
                                 <div className="form-row">
                                     <div className="form-group">

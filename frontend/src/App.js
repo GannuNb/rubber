@@ -30,6 +30,8 @@ import Dashboard1 from './Dashboard1.js';
 import BuyerBusinessProfile from "./BuyerBusinessProfile.js";
 import AddLotBuyer from "./AddLotBuyer.js";
 import showSuccessModal from "./showSuccessModal.js";
+import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
 
 function App() {
   return (
@@ -62,7 +64,8 @@ function App() {
         <Route path='/buyerbusinessprofile' element={<BuyerBusinessProfile/>} />
         <Route path='/addlotbuyer' element={<AddLotBuyer/>} />
         <Route path='/showSuccessModal' element={<showSuccessModal/>} />
-
+<Route path="/forgot-password" element={<ForgotPassword />} />
+<Route path="/reset-password/:token" element={<ResetPassword />} />
       </Routes>
       <Footer />
       

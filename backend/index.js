@@ -7,6 +7,7 @@ const supplierRoutes = require('./routes/supplierRoutes');
 const buyerRoutes = require('./routes/buyerRoutes');
 const lotRoutes = require('./routes/lotRoutes'); // Routes for lots
 const authRoutes = require('./routes/authRoutes');
+const contact = require('./routes/contact');
 const app = express(); // Initialize express app
 
 // Middlewares
@@ -18,6 +19,7 @@ app.use('/api/suppliers', supplierRoutes); // All supplier routes under /api/sup
 app.use('/api/buyers', buyerRoutes); // All buyer routes under /api/buyers
 app.use('/api/lots', lotRoutes); 
 app.use('/api/auth', authRoutes);          // All lot-related routes under /api/lots
+app.use('/api/contact', contact);          // All lot-related routes under /api/lots
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {

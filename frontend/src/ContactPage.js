@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./ContactPage.css";
 import icon1 from "./images/icon-51.jpg";
 import icon2 from "./images/icon-52.jpg";
 import icon3 from "./images/icon-50.jpg";
-import emailjs from "emailjs-com"; 
 
 function ContactPage() {
   const [formData, setFormData] = useState({
@@ -16,58 +16,40 @@ function ContactPage() {
 
   const [status, setStatus] = useState("");
 
-  
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
- 
-  const sendEmail = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setStatus("Sending...");
 
-    emailjs
-      .send(
-        "service_ptts9gd", 
-        
-        "template_wymsr1x", 
-        {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-        },
-        "qZKYs5oMQDM7P0V0-" 
-      )
-      .then(
-        (result) => {
-          setStatus("Message sent successfully!");
-          console.log("Email sent:", result.text);
-        },
-        (error) => {
-          setStatus("Failed to send message. Please try again.");
-          console.error("Failed to send email:", error);
-        }
-      );
+    try {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/contact`, {
+        name: `${formData.firstName} ${formData.lastName}`.trim(),
+        email: formData.email,
+        phone: formData.phone,
+        tour: "", // optional, you can remove or add if you want
+        message: formData.message,
+      });
 
-   
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      message: "",
-    });
+      setStatus("Message sent successfully!");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Failed to send message:", error);
+      setStatus("Failed to send message. Please try again.");
+    }
   };
 
-  
   return (
     <div className="contact-page">
-      
       <div
         className="contact-header"
         style={{
@@ -81,7 +63,6 @@ function ContactPage() {
         <p>HOME &gt; CONTACT US</p>
       </div>
 
-     
       <div className="contact-info">
         <div className="info-box">
           <div className="icon-text">
@@ -90,11 +71,12 @@ function ContactPage() {
             </div>
             <div className="text">
               <h3>Address</h3>
-              <p>FDRK 4258, Compass Building, Al Shohada Road, AL Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE</p>
+              <p>
+                FDRK 4258, Compass Building, Al Shohada Road, AL Hamra Industrial Zone-FZ, Ras Al Khaimah, UAE
+              </p>
             </div>
           </div>
         </div>
-
 
         <div className="info-box">
           <div className="icon-text">
@@ -119,17 +101,14 @@ function ContactPage() {
                 For General Queries: info@lavarubberllc.com
                 <br />
                 For Sales: sales@lavarubberllc.com
-                <br />
-               
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      
       <h2 className="text-center">Enquire Us</h2>
-      <form className="contact-form" onSubmit={sendEmail}>
+      <form className="contact-form" onSubmit={handleSubmit}>
         <div className="form-row">
           <input
             type="text"
@@ -181,7 +160,6 @@ function ContactPage() {
         </button>
       </form>
 
-      
       {status && <p className="status-message">{status}</p>}
     </div>
   );
