@@ -1,155 +1,155 @@
-/* AddLot.css */
+  /* AddLot.css */
 
-.add-lot-container {
-  max-width: 700px;
-  margin: 40px auto;
-  padding: 30px;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.add-lot-container h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #333;
-}
-
-/* Form styling */
-.lot-form .form-group {
-  margin-bottom: 20px;
-}
-
-.lot-form label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #444;
-}
-
-.lot-form select,
-.lot-form input {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 15px;
-  box-sizing: border-box;
-}
-
-.lot-form .form-row {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.lot-form .form-row input {
-  flex: 1;
-}
-
-/* Buttons */
-.btn {
-  display: inline-block;
-  padding: 10px 18px;
-  font-size: 15px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  font-weight: 500;
-  text-align: center;
-}
-
-.btn.add-btn {
-  background-color: #28a745;
-  color: white;
-}
-
-.btn.fetch-btn {
-  background-color: #007bff;
-  color: white;
-  margin-top: 12px;
-}
-
-.btn-secondary {
-  background-color: #6c757d;
-  color: white;
-}
-
-/* Hover effects */
-.btn:hover {
-  opacity: 0.9;
-}
-
-/* Responsive tweaks */
-@media (max-width: 600px) {
-  .lot-form .form-row {
-    flex-direction: column;
+  .add-lot-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
-}
-/* Add borders to all tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-}
 
-table th,
-table td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: center;
-}
+  .add-lot-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+  }
 
-table th {
-  background-color: #f5f5f5;
-}
+  /* Form styling */
+  .lot-form .form-group {
+    margin-bottom: 20px;
+  }
 
-.filter-download-container {
-  display: flex;
-  align-items: flex-end;
-  gap: 20px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
+  .lot-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+  }
 
-.filter-group {
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
-  min-width: 150px;
-}
+  .lot-form select,
+  .lot-form input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    box-sizing: border-box;
+  }
 
-.filter-group label {
-  margin-bottom: 6px;
-  font-weight: 600;
-}
+  .lot-form .form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
 
-.filter-group input[type="date"] {
-  padding: 6px 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+  .lot-form .form-row input {
+    flex: 1;
+  }
 
-.download-btn-group {
-  /* Push button to bottom align with date inputs */
-}
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    padding: 10px 18px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-weight: 500;
+    text-align: center;
+  }
 
-.download-btn {
-  background-color: #ff8800;
-  color: white;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  white-space: nowrap;
-  transition: background-color 0.3s ease;
-}
+  .btn.add-btn {
+    background-color: #28a745;
+    color: white;
+  }
 
-.download-btn:hover {
-  background-color: #e07b00;
-}
+  .btn.fetch-btn {
+    background-color: #007bff;
+    color: white;
+    margin-top: 12px;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+  }
+
+  /* Hover effects */
+  .btn:hover {
+    opacity: 0.9;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    .lot-form .form-row {
+      flex-direction: column;
+    }
+  }
+  /* Add borders to all tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+
+  table th,
+  table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+
+  table th {
+    background-color: #f5f5f5;
+  }
+
+  .filter-download-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    min-width: 150px;
+  }
+
+  .filter-group label {
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  .filter-group input[type="date"] {
+    padding: 6px 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .download-btn-group {
+    /* Push button to bottom align with date inputs */
+  }
+
+  .download-btn {
+    background-color: #ff8800;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+  }
+
+  .download-btn:hover {
+    background-color: #e07b00;
+  }
