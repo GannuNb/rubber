@@ -296,210 +296,97 @@ const LotDetails = () => {
   };
 
   return (
-    <div style={{ padding: "30px" }}>
-      <h2>
-        Lot: {lotNumber}
-      </h2>
+    <div className="lot-details-container">
+  <h2 className="lot-header">Lot: {lotNumber}</h2>
 
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "15px",
-          marginBottom: "15px",
-        }}
-      >
-        {/* Row 1: Container No & Seal No */}
-        <div style={{ display: "flex", gap: "15px", width: "100%", marginBottom: "10px" }}>
-          {[
-            { key: "containerNo", label: "Container No" },
-            { key: "sealNo", label: "Seal No" },
-          ].map(({ key, label }) => (
-            <div key={key} style={{ flex: "1", display: "flex", flexDirection: "column" }}>
-              <label htmlFor={key} style={{ marginBottom: "5px", fontWeight: "bold" }}>
-                {label}
-              </label>
-              <input
-                id={key}
-                name={key}
-                type="text"
-                value={form[key]}
-                onChange={handleFormChange}
-                style={{ padding: "8px" }}
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* Row 2: Material, Quantity, and Date */}
-        <div style={{ display: "flex", gap: "15px", width: "100%", marginBottom: "10px" }}>
-          {[
-            { key: "material", label: "Material", type: "text" },
-            { key: "quantity", label: "Quantity (kg)", type: "number" },
-            { key: "date", label: "Date", type: "date" },
-          ].map(({ key, label, type }) => (
-            <div key={key} style={{ flex: "1", display: "flex", flexDirection: "column" }}>
-              <label htmlFor={key} style={{ marginBottom: "5px", fontWeight: "bold" }}>
-                {label}
-              </label>
-              <input
-                id={key}
-                name={key}
-                type={type}
-                value={form[key]}
-                onChange={handleFormChange}
-                style={{ padding: "8px" }}
-                {...(key === "quantity" && { min: 0, step: "any" })}
-              />
-            </div>
-          ))}
-
-        </div>
-
-
-        <div style={{ flex: "1 1 100%", marginTop: "10px" }}>
-          <b>Price/Ton:</b> ${pricePerTon || "0"}
-        </div>
-        <div
-          style={{ flex: "1 1 100%", marginTop: "10px", textAlign: "center" }}
-        >
-          <button
-            onClick={handleAddDetails}
-            style={{
-              backgroundColor: "#28a745",
-              color: "white",
-              padding: "12px 20px",
-              width: "200px",
-              fontSize: "16px",
-              fontWeight: "600",
-              border: "none",
-              borderRadius: "6px",
-              cursor: "pointer",
-              marginTop: "-10px",
-            }}
-          >
-            Add Details
-          </button>
-        </div>
+  <div className="input-row">
+    {[
+      { key: "containerNo", label: "Container No" },
+      { key: "sealNo", label: "Seal No" },
+    ].map(({ key, label }) => (
+      <div key={key} className="input-group">
+        <label htmlFor={key}>{label}</label>
+        <input
+          id={key}
+          name={key}
+          type="text"
+          value={form[key]}
+          onChange={handleFormChange}
+        />
       </div>
+    ))}
+  </div>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "15px",
-          flexWrap: "wrap",
-          marginBottom: "20px",
-          alignItems: "center",
-        }}
-      >
+  <div className="input-row">
+    {[
+      { key: "material", label: "Material", type: "text" },
+      { key: "quantity", label: "Quantity (kg)", type: "number" },
+      { key: "date", label: "Date", type: "date" },
+    ].map(({ key, label, type }) => (
+      <div key={key} className="input-group">
+        <label htmlFor={key}>{label}</label>
         <input
-          type="number"
-          placeholder="Enter Amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          style={{
-            padding: "10px 16px",
-            fontSize: "16px",
-            width: "200px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
+          id={key}
+          name={key}
+          type={type}
+          value={form[key]}
+          onChange={handleFormChange}
+          {...(key === "quantity" && { min: 0, step: "any" })}
         />
-
-        <input
-          type="date"
-          value={amountDate}
-          onChange={(e) => setAmountDate(e.target.value)}
-          style={{
-            padding: "10px 16px",
-            fontSize: "16px",
-            width: "180px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
-        />
-
-        <button
-          onClick={handleAddAmount}
-          style={{
-            backgroundColor: "#28a745",
-            color: "white",
-            padding: "10px 20px",
-            fontSize: "16px",
-            border: "none",
-            borderRadius: "6px",
-            cursor: "pointer",
-          }}
-        >
-          Add Advance/Amount
-        </button>
-
-        <button
-          onClick={handleDownloadPDF}
-          style={{
-            background: "#007bff",
-            color: "white",
-            padding: "10px 20px",
-            fontSize: "16px",
-            border: "none",
-            borderRadius: "6px",
-            cursor: "pointer",
-          }}
-        >
-          📄 Download PDF
-        </button>
       </div>
-      <div
-        style={{
-          display: "flex",
-          gap: "15px",
-          marginBottom: "20px",
-          alignItems: "center",
-        }}
-      >
-        <label style={{ fontWeight: "bold" }}>Filter by Date:</label>
-        <input
-          type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-          style={{
-            padding: "8px",
-            fontSize: "14px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
-        />
-        <span>to</span>
-        <input
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-          style={{
-            padding: "8px",
-            fontSize: "14px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
-        />
-        <button
-          onClick={() => {
-            setStartDate("");
-            setEndDate("");
-          }}
-          style={{
-            padding: "8px 12px",
-            fontSize: "14px",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-            background: "#ccc",
-          }}
-        >
-          Clear
-        </button>
-      </div>
+    ))}
+  </div>
 
-      <table border="1" cellPadding="8" cellSpacing="0" width="100%">
+  <div style={{ marginTop: "10px" }}>
+    <b>Price/Ton:</b> ${pricePerTon || "0"}
+  </div>
+
+  <div style={{ marginTop: "10px", marginBottom: "30px" }}>
+  <button className="add-button" onClick={handleAddDetails}>
+    Add Details
+  </button>
+</div>
+
+  <div className="amount-row action-buttons">
+    <input
+      type="number"
+      placeholder="Enter Amount"
+      value={amount}
+      onChange={(e) => setAmount(e.target.value)}
+    />
+    <input
+      type="date"
+      value={amountDate}
+      onChange={(e) => setAmountDate(e.target.value)}
+    />
+    <button className="add-amount-btn" onClick={handleAddAmount}>
+      Add Advance/Amount
+    </button>
+    <button className="download-btn" onClick={handleDownloadPDF}>
+      📄 Download PDF
+    </button>
+  </div>
+
+  <div className="filter-row">
+    <label style={{ fontWeight: "bold" }}>Filter by Date:</label>
+    <input
+      type="date"
+      value={startDate}
+      onChange={(e) => setStartDate(e.target.value)}
+    />
+    <span>to</span>
+    <input
+      type="date"
+      value={endDate}
+      onChange={(e) => setEndDate(e.target.value)}
+    />
+    <button onClick={() => { setStartDate(""); setEndDate(""); }}>
+      Clear
+    </button>
+  </div>
+
+<div className="table-wrapper">
+  <table className="transaction-table">
         <thead style={{ background: "#f5f5f5" }}>
           <tr>
             <th>#</th>
@@ -561,10 +448,12 @@ const LotDetails = () => {
               ))
           )}
         </tbody>
-      </table>
-
-    </div>
+      </table>  
+</div>
+</div>
   );
 };
 
 export default LotDetails;
+
+

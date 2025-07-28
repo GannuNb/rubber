@@ -9,7 +9,7 @@ function ResetPassword() {
     const { token } = useParams();
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,46 +25,46 @@ function ResetPassword() {
         }
     };
 
-    return (
-        <div className="container mt-5" style={{ maxWidth: '400px' }}>
-            <h3>Reset Password</h3>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3 position-relative">
-                    <input
-                        type={showPassword ? 'text' : 'password'}
-                        placeholder="New Password"
-                        className="form-control"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        style={{ paddingRight: '2.5rem' }} // space for eye icon
-                    />
-                    <span
-                        onClick={() => setShowPassword(!showPassword)}
-                        style={{
-                            position: 'absolute',
-                            top: '50%',
-                            right: '10px',
-                            transform: 'translateY(-50%)',
-                            cursor: 'pointer',
-                            userSelect: 'none',
-                            fontSize: '1.2rem',
-                            color: '#666',
-                        }}
-                        aria-label={showPassword ? 'Hide password' : 'Show password'}
-                        role="button"
-                        tabIndex={0}
-                        onKeyPress={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') setShowPassword(!showPassword);
-                        }}
-                    >
-                        {showPassword ? <FaEye /> : <FaEyeSlash />}
-                    </span>
-                </div>
-                <button className="btn btn-success w-100" type="submit">Reset Password</button>
-            </form>
+return (
+    <div className="container mt-5" style={{ maxWidth: '400px' }}>
+      <h3>Reset Password</h3>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3 position-relative">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            placeholder="New Password"
+            className="form-control"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            style={{ paddingRight: '2.5rem' }} // space for eye icon
+          />
+          <span
+            onClick={() => setShowPassword(!showPassword)}
+            style={{
+              position: 'absolute',
+              top: '50%',
+              right: '10px',
+              transform: 'translateY(-50%)',
+              cursor: 'pointer',
+              userSelect: 'none',
+              fontSize: '1.2rem',
+              color: '#666',
+            }}
+            aria-label={showPassword ? 'Hide password' : 'Show password'}
+            role="button"
+            tabIndex={0}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') setShowPassword(!showPassword);
+            }}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
         </div>
-    );
+        <button className="btn btn-success w-100" type="submit">Reset Password</button>
+      </form>
+    </div>
+  );
 }
 
 export default ResetPassword;

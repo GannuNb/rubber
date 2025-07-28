@@ -1,6 +1,9 @@
+/* SweetAlert2 - Custom Compact Login Modal Styles */
+
+/* Base Modal Style */
 .swal-logo-only {
-  width: 30vw !important;         /* ~300px */
-  height: 25vh !important;        /* ~200px */
+  width: 30vw !important;           /* Responsive width on larger screens */
+  height: 25vh !important;          /* Responsive height */
   padding: 1.5vh 2vw !important;
   border-radius: 10px;
   display: flex !important;
@@ -10,48 +13,42 @@
   box-sizing: border-box;
 }
 
+/* Hide default SweetAlert2 icon */
 .swal-logo-only .swal2-icon {
   display: none !important;
 }
 
+/* Logo/Image styling */
 .swal-logo-only .swal2-image {
-  width: 50% !important;     /* Half of the modal */
+  width: 50% !important;            /* Half of modal width */
   height: auto !important;
   margin-bottom: 1vh;
 }
 
+/* Title text styling */
 .swal-title {
-  font-size: 1.2vw !important;
+  font-size: 1.2vw !important;      /* Responsive text on larger screens */
   font-weight: 600;
   text-align: center;
   margin: 0;
 }
-/* alerts.css */
-.swal-logo-only {
-  width: 30vw !important;
-  height: 25vh !important;
-  padding: 1.5vh 2vw !important;
-  border-radius: 10px;
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-}
 
-.swal-logo-only .swal2-icon {
-  display: none !important;
-}
+/* ------------------------------ */
+/* MOBILE STYLES (<= 480px wide) */
+/* ------------------------------ */
+@media screen and (max-width: 480px) {
+  .swal-logo-only {
+    width: 80vw !important;
+    height: auto !important;
+    padding: 2vh 5vw !important;
+  }
 
-.swal-logo-only .swal2-image {
-  width: 50% !important;
-  height: auto !important;
-  margin-bottom: 1vh;
-}
+  .swal-logo-only .swal2-image {
+    width: 60% !important;
+    margin-bottom: 2vh;
+  }
 
-.swal-title {
-  font-size: 1.2vw !important;
-  font-weight: 600;
-  text-align: center;
-  margin: 0;
+  .swal-title {
+    font-size: 4vw !important;     /* Larger text for small screens */
+  }
 }

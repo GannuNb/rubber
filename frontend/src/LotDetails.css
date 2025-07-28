@@ -1,0 +1,125 @@
+.lot-details-container {
+  padding: 20px;
+}
+
+.lot-header {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.input-row,
+.amount-row,
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.add-button {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  width: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: auto;
+}
+
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.action-buttons input,
+.action-buttons button {
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.download-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.add-amount-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.filter-row {
+  align-items: center;
+}
+
+.filter-row button {
+  background: #ccc;
+  border: none;
+  cursor: pointer;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transaction-table th,
+.transaction-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .input-row,
+  .amount-row,
+  .filter-row,
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .add-button {
+    width: 100%;
+  }
+
+  .action-buttons input,
+  .action-buttons button {
+    width: 100%;
+  }
+
+  .transaction-table th,
+  .transaction-table td {
+    font-size: 12px;
+    white-space: normal;
+  }
+}
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}

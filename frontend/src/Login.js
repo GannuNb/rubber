@@ -93,7 +93,7 @@ function Login() {
             tabIndex={0}
             onKeyPress={(e) => { if (e.key === 'Enter' || e.key === ' ') setShowPassword(!showPassword); }}
           >
-            {showPassword ? <FaEye /> : <FaEyeSlash />}
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
         </div>
 
