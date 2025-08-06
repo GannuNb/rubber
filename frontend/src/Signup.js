@@ -17,11 +17,10 @@ function Signup() {
   const [showConfirm, setShowConfirm] = useState(false);
   const navigate = useNavigate();
 
-  // Strict validation function
   const validate = () => {
     const newErrors = {};
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const phoneRegex = /^[0-9]{10}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const phoneRegex = /^[0-9]{8,}$/;
     const nameRegex = /^[a-zA-Z ]{2,}$/;
 
     if (!formData.name.trim()) {
@@ -34,14 +33,12 @@ function Signup() {
       newErrors.email = "Email is required";
     } else if (!emailRegex.test(formData.email.trim())) {
       newErrors.email = "Invalid email format";
-    } else if (!formData.email.trim().toLowerCase().endsWith("@gmail.com")) {
-      newErrors.email = "Only @gmail.com emails are allowed";
     }
 
     if (!formData.phone.trim()) {
       newErrors.phone = "Phone number is required";
     } else if (!phoneRegex.test(formData.phone.trim())) {
-      newErrors.phone = "Phone number must be 10 digits";
+      newErrors.phone = "Phone number must be at least 8 digits";
     }
 
     if (!formData.password) {
@@ -64,23 +61,23 @@ function Signup() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: "" }); // Clear field error
   };
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  if (!validate()) return;
 
-  try {
-    const res = await axios.post(
-      `${process.env.REACT_APP_API_URL}/api/auth/signup`,
-      formData
-    );
-    alert(res.data.message);
-    navigate("/login");
-  } catch (error) {
-    console.error(error);
-    alert("Signup failed");
-  }
-};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
 
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/auth/signup`,
+        formData
+      );
+      alert(res.data.message);
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+      alert("Signup failed");
+    }
+  };
 
   return (
     <div className="container mt-5 mb-5" style={{ maxWidth: "500px" }}>
