@@ -190,7 +190,7 @@ const AddLot = () => {
                     return {
                         type: 'Container',
                         timestamp: item.createdAt,
-                        date: new Date(item.createdAt).toLocaleDateString('en-GB'),
+            date: new Date(item.date || item.createdAt).toLocaleDateString('en-GB'),
                         containerNo: item.containerNo,
                         sealNo: item.sealNo,
                         material: item.material,
@@ -211,7 +211,7 @@ const AddLot = () => {
                     const row = {
                         type: type,
                         timestamp: item.createdAt,
-                        date: new Date(item.createdAt).toLocaleDateString('en-GB'),
+                        date: new Date(item.date || item.createdAt).toLocaleDateString('en-GB'),
                         containerNo: '',
                         sealNo: '',
                         material: '',

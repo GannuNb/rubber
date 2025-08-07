@@ -34,21 +34,21 @@ const LotDetails = () => {
   const [editRowId, setEditRowId] = useState(null);
   const [editForm, setEditForm] = useState({});
 
-const handleEditClick = (row) => {
-  setEditRowId(row.id);
-  setEditForm({ ...row });
-};
+  const handleEditClick = (row) => {
+    setEditRowId(row.id);
+    setEditForm({ ...row });
+  };
 
-const handleCancel = () => {
-  setEditRowId(null);
-  setEditForm({});
-};
+  const handleCancel = () => {
+    setEditRowId(null);
+    setEditForm({});
+  };
 
-const handleUpdate = async (tx) => {
-  try {
-    const isContainer = tx.type === "Container";
-    const payload = isContainer
-      ? {
+  const handleUpdate = async (tx) => {
+    try {
+      const isContainer = tx.type === "Container";
+      const payload = isContainer
+        ? {
           companyName,
           lotNumber,
           containerNo: editForm.containerNo || "",
@@ -58,7 +58,7 @@ const handleUpdate = async (tx) => {
           price: parseFloat(pricePerTon || editForm.pricePerTon || 0),
           date: new Date(editForm.timestamp),
         }
-      : {
+        : {
           companyName,
           lotNumber,
           amount: parseFloat(
@@ -67,24 +67,24 @@ const handleUpdate = async (tx) => {
           date: new Date(editForm.timestamp),
         };
 
-    console.log("Sending update payload:", payload);
+      console.log("Sending update payload:", payload);
 
-    const endpoint = isContainer
-      ? `${process.env.REACT_APP_API_URL}/api/lots/details/update/${tx._id}`
-      : `${process.env.REACT_APP_API_URL}/api/lots/amounts/update/${tx._id}`;
+      const endpoint = isContainer
+        ? `${process.env.REACT_APP_API_URL}/api/lots/details/update/${tx._id}`
+        : `${process.env.REACT_APP_API_URL}/api/lots/amounts/update/${tx._id}`;
 
-    await axios.put(endpoint, payload);
+      await axios.put(endpoint, payload);
 
-    setEditRowId(null);
-    fetchTransactions();
-  } catch (err) {
-    console.error("Update failed:", err);
-    alert(
-      err?.response?.data?.error ||
+      setEditRowId(null);
+      fetchTransactions();
+    } catch (err) {
+      console.error("Update failed:", err);
+      alert(
+        err?.response?.data?.error ||
         "Update failed. Please check your inputs and try again."
-    );
-  }
-};
+      );
+    }
+  };
 
 
   useEffect(() => {
@@ -117,51 +117,51 @@ const handleUpdate = async (tx) => {
         `${process.env.REACT_APP_API_URL}/api/lots/amounts/all`
       );
 
-const detailRows = detailsRes.data
-  .filter((item) => item.companyName === companyName && item.lotNumber === lotNumber)
-  .map((item) => {
-    const quantityInTons = parseFloat(item.quantity) / 1000;
-    const price = parseFloat(item.price);
-    const containerAmount = price * quantityInTons;
+      const detailRows = detailsRes.data
+        .filter((item) => item.companyName === companyName && item.lotNumber === lotNumber)
+        .map((item) => {
+          const quantityInTons = parseFloat(item.quantity) / 1000;
+          const price = parseFloat(item.price);
+          const containerAmount = price * quantityInTons;
 
-    return {
-      _id: item._id, // ✅ add this
-      type: "Container",
-      timestamp: item.date || item.createdAt,
-      date: item.date
-        ? new Date(item.date).toLocaleDateString("en-GB")
-        : new Date(item.createdAt).toLocaleDateString("en-GB"),
-      containerNo: item.containerNo,
-      sealNo: item.sealNo,
-      material: item.material,
-      quantity: quantityInTons,
-      pricePerTon: price,
-      containerAmount,
-      amountAdded: "",
-      totalPaid: 0,
-    };
-  });
+          return {
+            _id: item._id, // ✅ add this
+            type: "Container",
+            timestamp: item.date || item.createdAt,
+            date: item.date
+              ? new Date(item.date).toLocaleDateString("en-GB")
+              : new Date(item.createdAt).toLocaleDateString("en-GB"),
+            containerNo: item.containerNo,
+            sealNo: item.sealNo,
+            material: item.material,
+            quantity: quantityInTons,
+            pricePerTon: price,
+            containerAmount,
+            amountAdded: "",
+            totalPaid: 0,
+          };
+        });
 
-const amountRows = amountRes.data
-  .filter((item) => item.companyName === companyName && item.lotNumber === lotNumber)
-  .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
-  .map((item, index) => {
-    const dateObj = item.date ? new Date(item.date) : new Date(item.createdAt);
-    return {
-      _id: item._id, // ✅ add this
-      type: index === 0 ? "Advance" : "Amount",
-      timestamp: dateObj,
-      date: dateObj.toLocaleDateString("en-GB"),
-      containerNo: "",
-      sealNo: "",
-      material: "",
-      quantity: "",
-      pricePerTon: "",
-      containerAmount: "",
-      amountAdded: parseFloat(item.amount),
-      totalPaid: 0,
-    };
-  });
+      const amountRows = amountRes.data
+        .filter((item) => item.companyName === companyName && item.lotNumber === lotNumber)
+        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+        .map((item, index) => {
+          const dateObj = item.date ? new Date(item.date) : new Date(item.createdAt);
+          return {
+            _id: item._id, // ✅ add this
+            type: index === 0 ? "Advance" : "Amount",
+            timestamp: dateObj,
+            date: dateObj.toLocaleDateString("en-GB"),
+            containerNo: "",
+            sealNo: "",
+            material: "",
+            quantity: "",
+            pricePerTon: "",
+            containerAmount: "",
+            amountAdded: parseFloat(item.amount),
+            totalPaid: 0,
+          };
+        });
 
 
       const allRows = [...detailRows, ...amountRows].sort(
@@ -338,7 +338,7 @@ const amountRows = amountRes.data
       doc.setFontSize(12);
       doc.text("Final Balance Summary:", 14, y);
       doc.setFontSize(11);
-      doc.text(`Amount Left: ${lastBalance}`, 14, y + 8);
+      doc.text(` ${lastBalance}`, 14, y + 8);
 
       doc.save(`Lot_${companyName}_${lotNumber}.pdf`);
     };
@@ -346,259 +346,263 @@ const amountRows = amountRes.data
 
   return (
     <div className="lot-details-container">
-  <h2 className="lot-header">Lot: {lotNumber}</h2>
+      <h2 className="lot-header">Lot: {lotNumber}</h2>
 
-  <div className="input-row">
-    {[
-      { key: "containerNo", label: "Container No" },
-      { key: "sealNo", label: "Seal No" },
-    ].map(({ key, label }) => (
-      <div key={key} className="input-group">
-        <label htmlFor={key}>{label}</label>
-        <input
-          id={key}
-          name={key}
-          type="text"
-          value={form[key]}
-          onChange={handleFormChange}
-        />
+      <div className="input-row">
+        {[
+          { key: "containerNo", label: "Container No" },
+          { key: "sealNo", label: "Seal No" },
+        ].map(({ key, label }) => (
+          <div key={key} className="input-group">
+            <label htmlFor={key}>{label}</label>
+            <input
+              id={key}
+              name={key}
+              type="text"
+              value={form[key]}
+              onChange={handleFormChange}
+            />
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
 
-  <div className="input-row">
-    {[
-      { key: "material", label: "Material", type: "text" },
-      { key: "quantity", label: "Quantity (kg)", type: "number" },
-      { key: "date", label: "Date", type: "date" },
-    ].map(({ key, label, type }) => (
-      <div key={key} className="input-group">
-        <label htmlFor={key}>{label}</label>
-        <input
-          id={key}
-          name={key}
-          type={type}
-          value={form[key]}
-          onChange={handleFormChange}
-          {...(key === "quantity" && { min: 0, step: "any" })}
-        />
+      <div className="input-row">
+        {[
+          { key: "material", label: "Material", type: "text" },
+          { key: "quantity", label: "Quantity (kg)", type: "number" },
+          { key: "date", label: "Date", type: "date" },
+        ].map(({ key, label, type }) => (
+          <div key={key} className="input-group">
+            <label htmlFor={key}>{label}</label>
+            <input
+              id={key}
+              name={key}
+              type={type}
+              value={form[key]}
+              onChange={handleFormChange}
+              {...(key === "quantity" && { min: 0, step: "any" })}
+            />
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
 
-  <div style={{ marginTop: "10px" }}>
-    <b>Price/Ton:</b> ${pricePerTon || "0"}
-  </div>
+      <div style={{ marginTop: "10px" }}>
+        <b>Price/Ton:</b> ${pricePerTon || "0"}
+      </div>
 
-  <div style={{ marginTop: "10px", marginBottom: "30px" }}>
-  <button className="add-button" onClick={handleAddDetails}>
-    Add Details
-  </button>
-</div>
+      <div style={{ marginTop: "10px", marginBottom: "30px" }}>
+        <button className="add-button" onClick={handleAddDetails}>
+          Add Details
+        </button>
+      </div>
 
-  <div className="amount-row action-buttons">
-    <input
-      type="number"
-      placeholder="Enter Amount"
-      value={amount}
-      onChange={(e) => setAmount(e.target.value)}
-    />
-    <input
-      type="date"
-      value={amountDate}
-      onChange={(e) => setAmountDate(e.target.value)}
-    />
-    <button className="add-amount-btn" onClick={handleAddAmount}>
-      Add Advance/Amount
-    </button>
-    <button className="download-btn" onClick={handleDownloadPDF}>
-      📄 Download PDF
-    </button>
-  </div>
+      <div className="amount-row action-buttons">
+        <input
+          type="number"
+          placeholder="Enter Amount"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+        />
+        <input
+          type="date"
+          value={amountDate}
+          onChange={(e) => setAmountDate(e.target.value)}
+        />
+        <button className="add-amount-btn" onClick={handleAddAmount}>
+          Add Advance/Amount
+        </button>
+        <button className="download-btn" onClick={handleDownloadPDF}>
+          📄 Download PDF
+        </button>
+      </div>
 
-  <div className="filter-row">
-    <label style={{ fontWeight: "bold" }}>Filter by Date:</label>
-    <input
-      type="date"
-      value={startDate}
-      onChange={(e) => setStartDate(e.target.value)}
-    />
-    <span>to</span>
-    <input
-      type="date"
-      value={endDate}
-      onChange={(e) => setEndDate(e.target.value)}
-    />
-    <button onClick={() => { setStartDate(""); setEndDate(""); }}>
-      Clear
-    </button>
-  </div>
+      <div className="filter-row">
+        <label style={{ fontWeight: "bold" }}>Filter by Date:</label>
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+        <span>to</span>
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+        <button onClick={() => { setStartDate(""); setEndDate(""); }}>
+          Clear
+        </button>
+      </div>
 
-<div className="table-wrapper">
-  <table className="transaction-table">
-    <thead style={{ background: "#f5f5f5" }}>
-      <tr>
-        <th>#</th>
-        <th>Date</th>
-        <th>Type</th>
-        <th>Container No</th>
-        <th>Seal No</th>
-        <th>Material</th>
-        <th>Qty(MT)</th>
-        <th>Price/Ton</th>
-        <th>Container Amount</th>
-        <th>Amount Added</th>
-        <th>Total Paid</th>
-        <th>Rem. Balance</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {transactions.length === 0 ? (
-        <tr>
-          <td colSpan="13" style={{ textAlign: "center" }}>
-            No transactions yet
-          </td>
-        </tr>
-      ) : (
-        transactions
-          .filter((tx) => {
-            if (!startDate && !endDate) return true;
-            const txDate = new Date(tx.timestamp);
-            const start = startDate ? new Date(startDate) : null;
-            const end = endDate ? new Date(endDate) : null;
-            return (!start || txDate >= start) && (!end || txDate <= end);
-          })
-          .map((tx) => (
-            <tr
-              key={tx.id}
-              style={{
-                backgroundColor:
-                  tx.type === "Advance"
-                    ? "#fff3cd"
-                    : tx.type === "Amount"
-                    ? "#d4edda"
-                    : "transparent",
-                whiteSpace: "nowrap",
-              }}
-            >
-              <td>{tx.id}</td>
-              <td>
-                {editRowId === tx.id ? (
-                  <input
-                    type="date"
-                    value={
-                      new Date(editForm.timestamp).toISOString().split("T")[0]
-                    }
-                    onChange={(e) =>
-                      setEditForm((prev) => ({
-                        ...prev,
-                        timestamp: new Date(e.target.value).toISOString(),
-                      }))
-                    }
-                  />
-                ) : (
-                  tx.date
-                )}
-              </td>
-              <td>{tx.type}</td>
-              <td>
-                {editRowId === tx.id ? (
-                  <input
-                    value={editForm.containerNo || ""}
-                    onChange={(e) =>
-                      setEditForm((prev) => ({
-                        ...prev,
-                        containerNo: e.target.value,
-                      }))
-                    }
-                  />
-                ) : (
-                  tx.containerNo
-                )}
-              </td>
-              <td>
-                {editRowId === tx.id ? (
-                  <input
-                    value={editForm.sealNo || ""}
-                    onChange={(e) =>
-                      setEditForm((prev) => ({
-                        ...prev,
-                        sealNo: e.target.value,
-                      }))
-                    }
-                  />
-                ) : (
-                  tx.sealNo
-                )}
-              </td>
-              <td>
-                {editRowId === tx.id ? (
-                  <input
-                    value={editForm.material || ""}
-                    onChange={(e) =>
-                      setEditForm((prev) => ({
-                        ...prev,
-                        material: e.target.value,
-                      }))
-                    }
-                  />
-                ) : (
-                  tx.material
-                )}
-              </td>
-              <td>
-                {editRowId === tx.id ? (
-                  <input
-                    value={editForm.quantity || ""}
-                    onChange={(e) =>
-                      setEditForm((prev) => ({
-                        ...prev,
-                        quantity: e.target.value,
-                      }))
-                    }
-                  />
-                ) : (
-                  tx.quantity
-                )}
-              </td>
-              <td>{tx.pricePerTon}</td>
-              <td>{tx.containerAmount}</td>
-              <td>
-                {editRowId === tx.id && tx.type !== "Container" ? (
-                  <input
-                    value={editForm.amountAdded?.replace(/\$|,/g, "") || ""}
-                    onChange={(e) =>
-                      setEditForm((prev) => ({
-                        ...prev,
-                        amountAdded: e.target.value,
-                      }))
-                    }
-                  />
-                ) : (
-                  tx.amountAdded
-                )}
-              </td>
-              <td>{tx.totalPaid}</td>
-              <td>{tx.remainingBalance}</td>
-              <td>
-                {editRowId === tx.id ? (
-                  <>
-                    <button onClick={() => handleUpdate(tx)}>Save</button>
-                    <button onClick={handleCancel}>Cancel</button>
-                  </>
-                ) : (
-                  <button onClick={() => handleEditClick(tx)}>Edit</button>
-                )}
-              </td>
+      <div className="table-wrapper">
+        <table className="transaction-table">
+          <thead style={{ background: "#f5f5f5" }}>
+            <tr>
+              <th>#</th>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Container No</th>
+              <th>Seal No</th>
+              <th>Material</th>
+              <th>Qty(MT)</th>
+              <th>Price/Ton</th>
+              <th>Container Amount</th>
+              <th>Amount Added</th>
+              <th>Total Paid</th>
+              <th>Rem. Balance</th>
+              <th>Action</th>
             </tr>
-          ))
-      )}
-    </tbody>
-  </table>
-</div>
+          </thead>
+          <tbody>
+            {transactions.length === 0 ? (
+              <tr>
+                <td colSpan="13" style={{ textAlign: "center" }}>
+                  No transactions yet
+                </td>
+              </tr>
+            ) : (
+              transactions
+                .filter((tx) => {
+                  if (!startDate && !endDate) return true;
+                  const txDate = new Date(tx.timestamp);
+                  const start = startDate ? new Date(startDate) : null;
+                  const end = endDate ? new Date(endDate) : null;
+                  return (!start || txDate >= start) && (!end || txDate <= end);
+                })
+                .map((tx) => (
+                  <tr
+                    key={tx.id}
+                    style={{
+                      backgroundColor:
+                        tx.type === "Advance"
+                          ? "#fff3cd"
+                          : tx.type === "Amount"
+                            ? "#d4edda"
+                            : "transparent",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    <td>{tx.id}</td>
+                    <td>
+                      {editRowId === tx.id ? (
+                        <input
+                          type="date"
+                          value={
+                            new Date(editForm.timestamp).toISOString().split("T")[0]
+                          }
+                          onChange={(e) =>
+                            setEditForm((prev) => ({
+                              ...prev,
+                              timestamp: new Date(e.target.value).toISOString(),
+                            }))
+                          }
+                        />
+                      ) : (
+                        tx.date
+                      )}
+                    </td>
+                    <td>{tx.type}</td>
+                    <td>
+                      {editRowId === tx.id && tx.type === "Container" ? (
+                        <input
+                          value={editForm.containerNo || ""}
+                          onChange={(e) =>
+                            setEditForm((prev) => ({
+                              ...prev,
+                              containerNo: e.target.value,
+                            }))
+                          }
+                        />
+                      ) : (
+                        tx.containerNo
+                      )}
+                    </td>
 
-</div>
+                    <td>
+                      {editRowId === tx.id && tx.type === "Container" ? (
+                        <input
+                          value={editForm.sealNo || ""}
+                          onChange={(e) =>
+                            setEditForm((prev) => ({
+                              ...prev,
+                              sealNo: e.target.value,
+                            }))
+                          }
+                        />
+                      ) : (
+                        tx.sealNo
+                      )}
+                    </td>
+
+                    <td>
+                      {editRowId === tx.id && tx.type === "Container" ? (
+                        <input
+                          value={editForm.material || ""}
+                          onChange={(e) =>
+                            setEditForm((prev) => ({
+                              ...prev,
+                              material: e.target.value,
+                            }))
+                          }
+                        />
+                      ) : (
+                        tx.material
+                      )}
+                    </td>
+
+                    <td>
+                      {editRowId === tx.id && tx.type === "Container" ? (
+                        <input
+                          value={editForm.quantity || ""}
+                          onChange={(e) =>
+                            setEditForm((prev) => ({
+                              ...prev,
+                              quantity: e.target.value,
+                            }))
+                          }
+                        />
+                      ) : (
+                        tx.quantity
+                      )}
+                    </td>
+
+                    <td>{tx.pricePerTon}</td>
+                    <td>{tx.containerAmount}</td>
+                    <td>
+                      {editRowId === tx.id && tx.type !== "Container" ? (
+                        <input
+                          value={editForm.amountAdded?.replace(/\$|,/g, "") || ""}
+                          onChange={(e) =>
+                            setEditForm((prev) => ({
+                              ...prev,
+                              amountAdded: e.target.value,
+                            }))
+                          }
+                        />
+                      ) : (
+                        tx.amountAdded
+                      )}
+                    </td>
+                    <td>{tx.totalPaid}</td>
+                    <td>{tx.remainingBalance}</td>
+                    <td>
+                      {editRowId === tx.id ? (
+                        <>
+                          <button onClick={() => handleUpdate(tx)}>Save</button>
+                          <button onClick={handleCancel}>Cancel</button>
+                        </>
+                      ) : (
+                        <button onClick={() => handleEditClick(tx)}>Edit</button>
+                      )}
+                    </td>
+                  </tr>
+                ))
+            )}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
   );
 };
 
