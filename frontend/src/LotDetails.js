@@ -31,6 +31,62 @@ const LotDetails = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
+  const [editRowId, setEditRowId] = useState(null);
+  const [editForm, setEditForm] = useState({});
+
+const handleEditClick = (row) => {
+  setEditRowId(row.id);
+  setEditForm({ ...row });
+};
+
+const handleCancel = () => {
+  setEditRowId(null);
+  setEditForm({});
+};
+
+const handleUpdate = async (tx) => {
+  try {
+    const isContainer = tx.type === "Container";
+    const payload = isContainer
+      ? {
+          companyName,
+          lotNumber,
+          containerNo: editForm.containerNo || "",
+          sealNo: editForm.sealNo || "",
+          material: editForm.material || "",
+          quantity: editForm.quantity || "0",
+          price: parseFloat(pricePerTon || editForm.pricePerTon || 0),
+          date: new Date(editForm.timestamp),
+        }
+      : {
+          companyName,
+          lotNumber,
+          amount: parseFloat(
+            (editForm.amountAdded || "0").replace(/\$|,/g, "")
+          ),
+          date: new Date(editForm.timestamp),
+        };
+
+    console.log("Sending update payload:", payload);
+
+    const endpoint = isContainer
+      ? `${process.env.REACT_APP_API_URL}/api/lots/details/update/${tx._id}`
+      : `${process.env.REACT_APP_API_URL}/api/lots/amounts/update/${tx._id}`;
+
+    await axios.put(endpoint, payload);
+
+    setEditRowId(null);
+    fetchTransactions();
+  } catch (err) {
+    console.error("Update failed:", err);
+    alert(
+      err?.response?.data?.error ||
+        "Update failed. Please check your inputs and try again."
+    );
+  }
+};
+
+
   useEffect(() => {
     if (companyName && lotNumber) {
       fetchLotData();
@@ -61,59 +117,52 @@ const LotDetails = () => {
         `${process.env.REACT_APP_API_URL}/api/lots/amounts/all`
       );
 
-      const detailRows = detailsRes.data
-        .filter(
-          (item) =>
-            item.companyName === companyName && item.lotNumber === lotNumber
-        )
-        .map((item) => {
-          const quantityInTons = parseFloat(item.quantity) / 1000;
-          const price = parseFloat(item.price);
-          const containerAmount = price * quantityInTons;
+const detailRows = detailsRes.data
+  .filter((item) => item.companyName === companyName && item.lotNumber === lotNumber)
+  .map((item) => {
+    const quantityInTons = parseFloat(item.quantity) / 1000;
+    const price = parseFloat(item.price);
+    const containerAmount = price * quantityInTons;
 
-          return {
-            type: "Container",
-            timestamp: item.date || item.createdAt, // 🆕 use custom date if exists
-            date: item.date
-              ? new Date(item.date).toLocaleDateString("en-GB") // 🆕 show entered date
-              : new Date(item.createdAt).toLocaleDateString("en-GB"),
-            containerNo: item.containerNo,
-            sealNo: item.sealNo,
-            material: item.material,
-            quantity: quantityInTons,
-            pricePerTon: price,
-            containerAmount,
-            amountAdded: "",
-            totalPaid: 0,
-          };
-        });
+    return {
+      _id: item._id, // ✅ add this
+      type: "Container",
+      timestamp: item.date || item.createdAt,
+      date: item.date
+        ? new Date(item.date).toLocaleDateString("en-GB")
+        : new Date(item.createdAt).toLocaleDateString("en-GB"),
+      containerNo: item.containerNo,
+      sealNo: item.sealNo,
+      material: item.material,
+      quantity: quantityInTons,
+      pricePerTon: price,
+      containerAmount,
+      amountAdded: "",
+      totalPaid: 0,
+    };
+  });
 
-      const filteredAmounts = amountRes.data
-        .filter(
-          (item) =>
-            item.companyName === companyName && item.lotNumber === lotNumber
-        )
-        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+const amountRows = amountRes.data
+  .filter((item) => item.companyName === companyName && item.lotNumber === lotNumber)
+  .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+  .map((item, index) => {
+    const dateObj = item.date ? new Date(item.date) : new Date(item.createdAt);
+    return {
+      _id: item._id, // ✅ add this
+      type: index === 0 ? "Advance" : "Amount",
+      timestamp: dateObj,
+      date: dateObj.toLocaleDateString("en-GB"),
+      containerNo: "",
+      sealNo: "",
+      material: "",
+      quantity: "",
+      pricePerTon: "",
+      containerAmount: "",
+      amountAdded: parseFloat(item.amount),
+      totalPaid: 0,
+    };
+  });
 
-      const amountRows = filteredAmounts.map((item, index) => {
-        const dateObj = item.date
-          ? new Date(item.date)
-          : new Date(item.createdAt);
-
-        return {
-          type: index === 0 ? "Advance" : "Amount",
-          timestamp: dateObj,
-          date: dateObj.toLocaleDateString("en-GB"),
-          containerNo: "",
-          sealNo: "",
-          material: "",
-          quantity: "",
-          pricePerTon: "",
-          containerAmount: "",
-          amountAdded: parseFloat(item.amount),
-          totalPaid: 0,
-        };
-      });
 
       const allRows = [...detailRows, ...amountRows].sort(
         (a, b) => new Date(a.timestamp) - new Date(b.timestamp)
@@ -387,69 +436,168 @@ const LotDetails = () => {
 
 <div className="table-wrapper">
   <table className="transaction-table">
-        <thead style={{ background: "#f5f5f5" }}>
-          <tr>
-            <th>#</th>
-            <th>Date</th>
-            <th>Type</th>
-            <th>Container No</th>
-            <th>Seal No</th>
-            <th>Material</th>
-            <th>Qty(MT)</th>
-            <th>Price/Ton</th>
-            <th>Container Amount</th>
-            <th>Amount Added</th>
-            <th>Total Paid</th>
-            <th>Rem. Balance</th>
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.length === 0 ? (
-            <tr>
-              <td colSpan="12" style={{ textAlign: "center" }}>
-                No transactions yet
+    <thead style={{ background: "#f5f5f5" }}>
+      <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Container No</th>
+        <th>Seal No</th>
+        <th>Material</th>
+        <th>Qty(MT)</th>
+        <th>Price/Ton</th>
+        <th>Container Amount</th>
+        <th>Amount Added</th>
+        <th>Total Paid</th>
+        <th>Rem. Balance</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {transactions.length === 0 ? (
+        <tr>
+          <td colSpan="13" style={{ textAlign: "center" }}>
+            No transactions yet
+          </td>
+        </tr>
+      ) : (
+        transactions
+          .filter((tx) => {
+            if (!startDate && !endDate) return true;
+            const txDate = new Date(tx.timestamp);
+            const start = startDate ? new Date(startDate) : null;
+            const end = endDate ? new Date(endDate) : null;
+            return (!start || txDate >= start) && (!end || txDate <= end);
+          })
+          .map((tx) => (
+            <tr
+              key={tx.id}
+              style={{
+                backgroundColor:
+                  tx.type === "Advance"
+                    ? "#fff3cd"
+                    : tx.type === "Amount"
+                    ? "#d4edda"
+                    : "transparent",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <td>{tx.id}</td>
+              <td>
+                {editRowId === tx.id ? (
+                  <input
+                    type="date"
+                    value={
+                      new Date(editForm.timestamp).toISOString().split("T")[0]
+                    }
+                    onChange={(e) =>
+                      setEditForm((prev) => ({
+                        ...prev,
+                        timestamp: new Date(e.target.value).toISOString(),
+                      }))
+                    }
+                  />
+                ) : (
+                  tx.date
+                )}
+              </td>
+              <td>{tx.type}</td>
+              <td>
+                {editRowId === tx.id ? (
+                  <input
+                    value={editForm.containerNo || ""}
+                    onChange={(e) =>
+                      setEditForm((prev) => ({
+                        ...prev,
+                        containerNo: e.target.value,
+                      }))
+                    }
+                  />
+                ) : (
+                  tx.containerNo
+                )}
+              </td>
+              <td>
+                {editRowId === tx.id ? (
+                  <input
+                    value={editForm.sealNo || ""}
+                    onChange={(e) =>
+                      setEditForm((prev) => ({
+                        ...prev,
+                        sealNo: e.target.value,
+                      }))
+                    }
+                  />
+                ) : (
+                  tx.sealNo
+                )}
+              </td>
+              <td>
+                {editRowId === tx.id ? (
+                  <input
+                    value={editForm.material || ""}
+                    onChange={(e) =>
+                      setEditForm((prev) => ({
+                        ...prev,
+                        material: e.target.value,
+                      }))
+                    }
+                  />
+                ) : (
+                  tx.material
+                )}
+              </td>
+              <td>
+                {editRowId === tx.id ? (
+                  <input
+                    value={editForm.quantity || ""}
+                    onChange={(e) =>
+                      setEditForm((prev) => ({
+                        ...prev,
+                        quantity: e.target.value,
+                      }))
+                    }
+                  />
+                ) : (
+                  tx.quantity
+                )}
+              </td>
+              <td>{tx.pricePerTon}</td>
+              <td>{tx.containerAmount}</td>
+              <td>
+                {editRowId === tx.id && tx.type !== "Container" ? (
+                  <input
+                    value={editForm.amountAdded?.replace(/\$|,/g, "") || ""}
+                    onChange={(e) =>
+                      setEditForm((prev) => ({
+                        ...prev,
+                        amountAdded: e.target.value,
+                      }))
+                    }
+                  />
+                ) : (
+                  tx.amountAdded
+                )}
+              </td>
+              <td>{tx.totalPaid}</td>
+              <td>{tx.remainingBalance}</td>
+              <td>
+                {editRowId === tx.id ? (
+                  <>
+                    <button onClick={() => handleUpdate(tx)}>Save</button>
+                    <button onClick={handleCancel}>Cancel</button>
+                  </>
+                ) : (
+                  <button onClick={() => handleEditClick(tx)}>Edit</button>
+                )}
               </td>
             </tr>
-          ) : (
-            transactions
-              .filter((tx) => {
-                if (!startDate && !endDate) return true;
-                const txDate = new Date(tx.timestamp);
-                const start = startDate ? new Date(startDate) : null;
-                const end = endDate ? new Date(endDate) : null;
-                return (!start || txDate >= start) && (!end || txDate <= end);
-              })
-              .map((tx) => (
-                <tr
-                  key={tx.id}
-                  style={{
-                    backgroundColor:
-                      tx.type === "Advance"
-                        ? "#fff3cd"
-                        : tx.type === "Amount"
-                          ? "#d4edda"
-                          : "transparent",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  <td>{tx.id}</td>
-                  <td>{tx.date}</td>
-                  <td>{tx.type}</td>
-                  <td>{tx.containerNo}</td>
-                  <td>{tx.sealNo}</td>
-                  <td>{tx.material}</td>
-                  <td>{tx.quantity}</td>
-                  <td>{tx.pricePerTon}</td>
-                  <td>{tx.containerAmount}</td>
-                  <td>{tx.amountAdded}</td>
-                  <td>{tx.totalPaid}</td>
-                  <td>{tx.remainingBalance}</td>
-                </tr>
-              ))
-          )}
-        </tbody>
-      </table>  
+          ))
+      )}
+    </tbody>
+  </table>
 </div>
+
 </div>
   );
 };

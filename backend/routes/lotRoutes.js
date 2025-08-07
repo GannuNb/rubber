@@ -91,4 +91,37 @@ router.get('/amounts/all', async (req, res) => {
   }
 });
 
+
+
+// Update Lot Detail by ID
+router.put('/details/update/:id', async (req, res) => {
+  try {
+    const updatedDetail = await LotDetails.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+    if (!updatedDetail) {
+      return res.status(404).json({ error: 'Detail not found' });
+    }
+    res.json(updatedDetail);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Update Amount by ID
+router.put('/amounts/update/:id', async (req, res) => {
+  try {
+    const updatedAmount = await LotAmount.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.json(updatedAmount);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 module.exports = router;
